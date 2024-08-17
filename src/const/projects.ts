@@ -34,8 +34,8 @@ export const experiences: Work[] = [
       liveLink: "",
     },
     image: "/avpn.png",
-    startDate: "May 2022",
-    endDate: "August 2022",
+    startDate: "01/05/2022",
+    endDate: "31/08/2022",
   },
   {
     id: 2,
@@ -79,8 +79,8 @@ export const experiences: Work[] = [
       liveLink: "",
     },
     image: "/sekolahmu.png",
-    startDate: "September 2022",
-    endDate: "December 2022",
+    startDate: "01/09/2022",
+    endDate: "01/12/2022",
   },
   {
     id: 3,
@@ -120,8 +120,8 @@ export const experiences: Work[] = [
       liveLink: "",
     },
     image: "/antares2.png",
-    startDate: "January 2023",
-    endDate: "June 2023",
+    startDate: "01/01/2023",
+    endDate: "30/06/2023",
   },
   {
     id: 4,
@@ -171,7 +171,7 @@ export const experiences: Work[] = [
       liveLink: "",
     },
     image: "/satudental.webp",
-    startDate: "November 2023",
+    startDate: "01/11/2023",
     endDate: "",
   },
 ];

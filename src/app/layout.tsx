@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/layouts/sidebar";
+import Footer from "@/components/layouts/footer";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
           <Sidebar />
           <main className="relative lg:w-10/12 w-full flex flex-col justify-between lg:px-24 px-4">
             {children}
+            <Footer />
           </main>
         </section>
       </body>

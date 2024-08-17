@@ -80,11 +80,6 @@ export default function Home() {
         <SocialSection />
       </div>
       <ExperiencesSection />
-      <div className="py-5">
-        <h4 className="tracking-[.2em] text-sm text-gray-500 uppercase">
-          Skills
-        </h4>
-      </div>
     </div>
   );
 }

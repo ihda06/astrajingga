@@ -33,11 +33,11 @@ export default function SocialSection() {
     <div className="space-y-3">
       <h3 className="tracking-widest text-gray-500">Contact</h3>
 
-      <div className="grid lg:grid-cols-3 grid-cols-1 text-start gap-3">
+      <div className="grid grid-cols-3 text-start gap-3">
         {SocialMedia.map((item) => (
           <div
             key={item.title}
-            className="p-3 w-[200px] flex flex-col justify-between gap-3 rounded-lg border"
+            className="p-3 lg:w-[200px] flex flex-col justify-between gap-3 rounded-lg border"
           >
             <div className="space-y-1 ">
               <div className="flex">
@@ -49,7 +49,7 @@ export default function SocialSection() {
             </div>
             <Link
               href={item.link}
-              className="py-2 px-4 text-sm rounded-full border shadow self-baseline"
+              className="py-2 px-4 lg:text-sm text-xs rounded-full border shadow self-baseline"
             >
               Follow
             </Link>

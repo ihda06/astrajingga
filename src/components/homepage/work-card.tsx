@@ -2,6 +2,7 @@
 
 import { Work } from "@/types/projects";
 import Image from "next/image";
+import CustomParseFormat from "dayjs/plugin/customParseFormat";
 import dayjs from "dayjs";
 import Link from "next/link";
 import cn from "@/utils/format";
@@ -10,14 +11,17 @@ import { useRouter } from "next/navigation";
 import { MotionValue, motion, useTransform } from "framer-motion";
 import Marquee from "react-fast-marquee";
 
+dayjs.extend(CustomParseFormat);
+
 const duration = (startDate: string, endDate?: string) => {
   if (!endDate) {
-    return dayjs().diff(dayjs(startDate, "MMMM YYYY"), "month");
+    return dayjs().diff(dayjs(startDate, "DD/MM/YYYY"), "month");
   }
-  const duration = dayjs(endDate, "MMMM YYYY").diff(
-    dayjs(startDate, "MMMM YYYY"),
+  const duration = dayjs(endDate, "DD/MM/YYYY").diff(
+    dayjs(startDate, "DD/MM/YYYY"),
     "month"
   );
+
   return duration > 0 ? duration : 1;
 };
 export default function WorkCard({
@@ -47,7 +51,7 @@ export default function WorkCard({
       style={{ top: `calc(-24px + ${id * 70}px)` }}
     >
       <motion.div style={{ scale }} className="flex justify-center">
-        <div className="space-y-3 relative backdrop-blur-xl border shadow-inner p-6 w-[80%] rounded-xl">
+        <div className="space-y-3 relative backdrop-blur-xl bg-white/20 border shadow-inner p-6 w-[80%] rounded-xl">
           <div className="flex justify-between">
             <div className="-space-y-1">
               <h1 className="text-base font-bold">{title}</h1>
@@ -66,7 +70,7 @@ export default function WorkCard({
             </div>
             <div className="text-end">
               <h1 className="text-sm">
-                {dayjs(startDate, "MMMM YYYY").format("YYYY")}
+                {dayjs(startDate, "DD/MM/YYYY").format("YYYY")}
               </h1>
               <h1 className="text-xs text-gray-500">
                 {duration(startDate, endDate)}
