@@ -51,7 +51,7 @@ export default function WorkCard({
       style={{ top: `calc(-24px + ${id * 70}px)` }}
     >
       <motion.div style={{ scale }} className="flex justify-center">
-        <div className="space-y-3 relative backdrop-blur-xl bg-white/20 border shadow-inner p-6 w-[80%] rounded-xl">
+        <div className="space-y-3 relative backdrop-blur-sm bg-white/30 border shadow-inner p-6 w-[80%] rounded-xl">
           <div className="flex justify-between">
             <div className="-space-y-1">
               <h1 className="text-base font-bold">{title}</h1>
