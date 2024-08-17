@@ -80,7 +80,7 @@ export default function DetailExperiencePage({
             ))}
           </ul>
         </div>
-        <div className="pt-3 grid grid-cols-3 gap-2">
+        <div className="pt-3 grid lg:grid-cols-3 grid-cols-1 gap-2">
           <div className="">
             <h4 className="font-bold">Timeline</h4>
             <span className="text-xs">
