@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Nunito } from "next/font/google";
 import "./globals.css";
+import Sidebar from "@/components/layouts/sidebar";
 
-const inter = Inter({ subsets: ["latin"] });
+const nunito = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +17,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={nunito.className} suppressHydrationWarning>
+        <section className="flex bg-white divide-x w-screen">
+          <Sidebar />
+          <main className="relative lg:w-10/12 w-full flex flex-col justify-between lg:px-24 px-4">
+            {children}
+          </main>
+        </section>
+      </body>
     </html>
   );
 }
