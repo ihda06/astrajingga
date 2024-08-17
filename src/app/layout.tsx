@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={nunito.className} suppressHydrationWarning>
+      <body className={nunito.className}>
         <section className="flex bg-white divide-x w-screen">
           <Sidebar />
           <main className="relative lg:w-10/12 w-full flex flex-col justify-between lg:px-24 px-4">

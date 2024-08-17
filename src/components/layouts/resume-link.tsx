@@ -1,8 +1,8 @@
 "use client";
 
 import { LinkIcon } from "@heroicons/react/16/solid";
-import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
+import { motion } from "framer-motion";
+
 import { useState } from "react";
 
 export default function ResumeLink() {

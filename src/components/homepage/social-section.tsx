@@ -33,7 +33,7 @@ export default function SocialSection() {
     <div className="space-y-3">
       <h3 className="tracking-widest text-gray-500">Contact</h3>
 
-      <div className="grid grid-cols-3 text-start gap-3">
+      <div className="grid lg:grid-cols-3 grid-cols-1 text-start gap-3">
         {SocialMedia.map((item) => (
           <div
             key={item.title}

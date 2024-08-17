@@ -12,10 +12,10 @@ import Marquee from "react-fast-marquee";
 
 const duration = (startDate: string, endDate?: string) => {
   if (!endDate) {
-    return dayjs().diff(dayjs(startDate, "MM YYYY"), "month");
+    return dayjs().diff(dayjs(startDate, "MMMM YYYY"), "month");
   }
-  const duration = dayjs(endDate, "MM YYYY").diff(
-    dayjs(startDate, "MM YYYY"),
+  const duration = dayjs(endDate, "MMMM YYYY").diff(
+    dayjs(startDate, "MMMM YYYY"),
     "month"
   );
   return duration > 0 ? duration : 1;
@@ -29,7 +29,6 @@ export default function WorkCard({
   endDate,
   progress,
   targetScale,
-  description,
   achievements,
   short_description,
   stacks,
@@ -67,7 +66,7 @@ export default function WorkCard({
             </div>
             <div className="text-end">
               <h1 className="text-sm">
-                {dayjs(startDate, "MM YYYY").format("YYYY")}
+                {dayjs(startDate, "MMMM YYYY").format("YYYY")}
               </h1>
               <h1 className="text-xs text-gray-500">
                 {duration(startDate, endDate)}
@@ -111,7 +110,13 @@ export default function WorkCard({
                 className="flex cursor-pointer w-full relative hover:scale-[1.02] bg-white hover:shadow-2xl duration-300 items-center justify-center rounded-lg border shadow-lg h-48"
               >
                 <div className={cn("flex items-center")}>
-                  <Image src={image} width={100} height={100} alt={title} />
+                  <Image
+                    src={image}
+                    width={100}
+                    height={100}
+                    alt={title}
+                    style={{ width: "auto", height: "auto" }}
+                  />
                 </div>
               </div>
               <Marquee
