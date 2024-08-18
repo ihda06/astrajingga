@@ -1,13 +1,12 @@
 "use client";
 
-import { experiences, projects } from "@/const/projects";
+import { projects } from "@/const/projects";
 import { motion } from "framer-motion";
 import { ArrowLeftIcon } from "@heroicons/react/16/solid";
 import {
   ArrowTopRightOnSquareIcon,
-  BuildingOffice2Icon,
 } from "@heroicons/react/24/outline";
-import Image from "next/image";
+
 import Link from "next/link";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";

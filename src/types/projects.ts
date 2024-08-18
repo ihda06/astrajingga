@@ -21,6 +21,7 @@ export type Work = {
   };
   startDate: string;
   endDate?: string;
+  images?: string[];
 };
 
 export enum Stack {

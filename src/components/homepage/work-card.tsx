@@ -2,7 +2,7 @@
 
 import { Work } from "@/types/projects";
 import Image from "next/image";
-import CustomParseFormat from "dayjs/plugin/customParseFormat";
+
 import dayjs from "dayjs";
 import Link from "next/link";
 import cn from "@/utils/format";
@@ -10,8 +10,6 @@ import cn from "@/utils/format";
 import { useRouter } from "next/navigation";
 import { MotionValue, motion, useTransform } from "framer-motion";
 import Marquee from "react-fast-marquee";
-
-dayjs.extend(CustomParseFormat);
 
 const duration = (startDate: string, endDate?: string) => {
   if (!endDate) {
