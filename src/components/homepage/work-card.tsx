@@ -7,9 +7,9 @@ import dayjs from "dayjs";
 import Link from "next/link";
 import cn from "@/utils/format";
 
-import { useRouter } from "next/navigation";
 import { MotionValue, motion, useTransform } from "framer-motion";
 import Marquee from "react-fast-marquee";
+import { useRouter } from "next/navigation";
 
 const duration = (startDate: string, endDate?: string) => {
   if (!endDate) {
