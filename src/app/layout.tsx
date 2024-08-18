@@ -5,6 +5,7 @@ import Sidebar from "@/components/layouts/sidebar";
 import Footer from "@/components/layouts/footer";
 import dayjs from "dayjs";
 import CustomParseFormat from "dayjs/plugin/customParseFormat";
+import React from "react";
 
 const nunito = Nunito({ subsets: ["latin"] });
 

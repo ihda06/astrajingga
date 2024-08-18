@@ -1,7 +1,7 @@
 "use client";
 
 import { useScroll, motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 export default function Item() {
   const ref = useRef(null);
@@ -9,13 +9,6 @@ export default function Item() {
     target: ref,
     offset: ["end end", "start start"],
   });
-
-  useEffect(() => {
-    scrollYProgress.on("change", (value) => {
-      console.log(value);
-    });
-    console.log(scrollYProgress);
-  }, [scrollYProgress]);
 
   return (
     <section>

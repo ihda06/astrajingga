@@ -21,7 +21,6 @@ export default function DetailExperiencePage({
   if (!info) {
     return <div>Not Found</div>;
   }
-  console.log(info.endDate);
 
   return (
     <motion.div

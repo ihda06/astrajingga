@@ -3,8 +3,8 @@ import { MapPinIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 import ExperiencesSection from "@/components/homepage/experiences-section";
-import { SkillList, SocialMedia } from "@/const/common";
-import Link from "next/link";
+import { SkillList } from "@/const/common";
+
 import SocialSection from "@/components/homepage/social-section";
 
 export default function Home() {
