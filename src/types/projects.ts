@@ -24,6 +24,7 @@ export type Work = {
   images?: string[];
 };
 
+/* eslint-disable no-unused-vars */
 export enum Stack {
   NEXT_JS = "Next.js",
   TAILWIND = "Tailwind",

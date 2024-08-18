@@ -11,7 +11,6 @@ import {
   AiOutlineInstagram,
   AiOutlineLinkedin,
 } from "react-icons/ai";
-import { title } from "process";
 export const SkillList = [
   {
     title: "ReactJS",
