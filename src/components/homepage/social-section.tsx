@@ -1,4 +1,4 @@
-import cn from "@/utils/format";
+import { cn } from "@/utils/format";
 import Link from "next/link";
 import {
   AiOutlineGithub,

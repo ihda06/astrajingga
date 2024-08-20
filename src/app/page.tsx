@@ -1,4 +1,3 @@
-import cn from "@/utils/format";
 import { MapPinIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
@@ -6,6 +5,7 @@ import ExperiencesSection from "@/components/homepage/experiences-section";
 import { SkillList } from "@/const/common";
 
 import SocialSection from "@/components/homepage/social-section";
+import { cn } from "@/utils/format";
 
 export default function Home() {
   return (

@@ -3,13 +3,13 @@
 import { Work } from "@/types/projects";
 import Image from "next/image";
 
-import dayjs from "dayjs";
 import Link from "next/link";
-import cn from "@/utils/format";
 
 import { MotionValue, motion, useTransform } from "framer-motion";
 import Marquee from "react-fast-marquee";
 import { useRouter } from "next/navigation";
+
+import { cn, dayjs } from "@/utils/format";
 
 const duration = (startDate: string, endDate?: string) => {
   if (!endDate) {
