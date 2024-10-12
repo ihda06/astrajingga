@@ -4,6 +4,8 @@ import { experiences } from "@/const/projects";
 import WorkCard from "@/components/homepage/work-card";
 import { useRef } from "react";
 import { useScroll } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { useMediaQuery } from "usehooks-ts";
 
 export default function ExperiencesSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -11,9 +13,16 @@ export default function ExperiencesSection() {
     target: ref,
     offset: ["start start", "end end"],
   });
+
+  const isMobile = useMediaQuery("(max-width: 768px)");
   return (
     <div ref={ref} className="py-5 relative">
-      <h4 className="tracking-[.2em] sticky top-6 text-sm text-gray-500 uppercase text-center">
+      <h4
+        className={cn(
+          "tracking-[.2em] sticky text-sm text-gray-500 uppercase text-center",
+          isMobile ? "top-14" : "top-6"
+        )}
+      >
         Experiences
       </h4>
       <div className="space-y-6 mt-6 flex flex-col items-center">

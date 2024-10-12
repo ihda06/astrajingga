@@ -10,6 +10,7 @@ import Marquee from "react-fast-marquee";
 import { useRouter } from "next/navigation";
 
 import { cn, dayjs } from "@/utils/format";
+import { useMediaQuery } from "usehooks-ts";
 
 const duration = (startDate: string, endDate?: string) => {
   if (!endDate) {
@@ -42,11 +43,14 @@ export default function WorkCard({
   const router = useRouter();
 
   const scale = useTransform(progress, [0, 1], [1, targetScale]);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
     <div
       className="sticky w-full "
-      style={{ top: `calc(-24px + ${id * 70}px)` }}
+      style={{
+        top: `calc(-${isMobile ? 0 : 24}px + ${id * (isMobile ? 120 : 90)}px)`,
+      }}
     >
       <motion.div style={{ scale }} className="flex justify-center">
         <div className="space-y-3 relative backdrop-blur-sm bg-white/30 border shadow-inner p-6 w-[80%] rounded-xl">

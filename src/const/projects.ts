@@ -191,6 +191,11 @@ export const experiences: Work[] = [
     image: "/satudental.webp",
     startDate: "01/11/2023",
     endDate: "",
+    images: [
+      "/satudental/doc2.png",
+      "/satudental/doc1.png",
+      "/satudental/pic1.jpg",
+    ],
   },
 ];
 

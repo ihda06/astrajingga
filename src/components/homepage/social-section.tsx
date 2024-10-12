@@ -5,6 +5,7 @@ import {
   AiOutlineInstagram,
   AiOutlineLinkedin,
 } from "react-icons/ai";
+import { Button } from "@/components/ui/button";
 
 export default function SocialSection() {
   const SocialMedia = [
@@ -37,22 +38,22 @@ export default function SocialSection() {
         {SocialMedia.map((item) => (
           <div
             key={item.title}
-            className="p-3 lg:w-[200px] flex flex-col justify-between gap-3 rounded-lg border"
+            className="p-3 lg:flex items-center gap-3 space-y-3 rounded-lg border"
           >
-            <div className="space-y-1 ">
-              <div className="flex">
-                <div className={cn(item.bg_color, "p-2 rounded-lg")}>
-                  <item.icon className="text-white size-6" />
-                </div>
-              </div>
-              <h5 className="font-semibold">{item.title}</h5>
-            </div>
-            <Link
-              href={item.link}
-              className="py-2 px-4 lg:text-sm text-xs rounded-full border shadow self-baseline"
+            <div
+              className={cn(
+                item.bg_color,
+                "p-2 rounded-lg aspect-square flex items-center justify-center"
+              )}
             >
-              Follow
-            </Link>
+              <item.icon className="text-white size-10" />
+            </div>
+            <div className="">
+              <h5 className="font-semibold lg:block hidden">{item.title}</h5>
+              <Button variant={"outline"} size={"sm"} asChild>
+                <Link href={item.link}>Follow</Link>
+              </Button>
+            </div>
           </div>
         ))}
       </div>
