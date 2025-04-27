@@ -47,11 +47,6 @@ export default function ProjectCard({ ...props }: Project) {
         <button
           onClick={() => window.open(props.link?.liveLink || "#")}
           disabled={!props.isActive}
-          className={cn(
-            props.isActive
-              ? "text-gray-500 hover:text-gray-700"
-              : "text-gray-400"
-          )}
         >
           <div
             className={cn(
@@ -61,8 +56,15 @@ export default function ProjectCard({ ...props }: Project) {
                 : "cursor-not-allowed bg-slate-50 hover:bg-slate-50"
             )}
           >
-            <FaArrowUpRightFromSquare className=" transition duration-200 ease-in-out" />
-            <span>View Project</span>
+            <FaArrowUpRightFromSquare
+              className={cn(
+                "text-gray-500 hover:text-gray-700 transition duration-200 ease-in-out",
+                props.isActive ? "" : "text-gray-400"
+              )}
+            />
+            <span className={cn(props.isActive ? "" : "text-gray-400")}>
+              View Project
+            </span>
           </div>
         </button>
 
