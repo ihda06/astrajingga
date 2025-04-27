@@ -7,6 +7,7 @@ import { SkillList } from "@/const/common";
 import SocialSection from "@/components/homepage/social-section";
 import { cn } from "@/utils/format";
 import { Metadata } from "next";
+import ProjectExperiencesSection from "@/components/homepage/project-experiences-section";
 
 export const metadata: Metadata = {
   title: "Ihda Anwari ● Home",
@@ -85,6 +86,7 @@ export default function Home() {
         <SocialSection />
       </div>
       <ExperiencesSection />
+      <ProjectExperiencesSection />
     </div>
   );
 }

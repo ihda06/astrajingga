@@ -24,6 +24,32 @@ export type Work = {
   images?: string[];
 };
 
+export type Project = {
+  id: number;
+  title: string;
+  description: string;
+  stacks: Stack[];
+  image: string;
+  achievements?: string[];
+  short_description?: string;
+  location?: string;
+  position?: string;
+  responsibilities?: string[];
+  skills?: string[];
+  link?: {
+    liveLink?: string;
+    githubLink?: string;
+  };
+  company?: {
+    name: string;
+    link?: string;
+  };
+  startDate: string;
+  endDate?: string;
+  images?: string[];
+  isActive: boolean;
+};
+
 /* eslint-disable no-unused-vars */
 export enum Stack {
   NEXT_JS = "Next.js",

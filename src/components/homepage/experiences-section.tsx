@@ -23,7 +23,7 @@ export default function ExperiencesSection() {
           isMobile ? "top-14" : "top-6"
         )}
       >
-        Experiences
+        Work Experiences
       </h4>
       <div className="space-y-6 mt-6 flex flex-col items-center">
         {experiences.map((work, idx) => {

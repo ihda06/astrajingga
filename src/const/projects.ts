@@ -1,4 +1,4 @@
-import { Work, Stack } from "@/types/projects";
+import { Work, Stack, Project } from "@/types/projects";
 
 export const experiences: Work[] = [
   {
@@ -190,7 +190,7 @@ export const experiences: Work[] = [
     },
     image: "/satudental.webp",
     startDate: "01/11/2023",
-    endDate: "",
+    endDate: "30/10/2024",
     images: [
       "/satudental/doc2.png",
       "/satudental/doc1.png",
@@ -199,11 +199,11 @@ export const experiences: Work[] = [
   },
 ];
 
-export const projects: Work[] = [
+export const projects: Project[] = [
   {
     id: 5,
-    title: "Coding Test #1",
-    type: "Project",
+    title: "Coding Test Synapsis",
+    isActive: true,
     company: {
       name: "Synapsis",
     },
@@ -227,8 +227,8 @@ export const projects: Work[] = [
   },
   {
     id: 6,
-    title: "Coding Test #2",
-    type: "Project",
+    title: "Coding Test Dellos",
+    isActive: true,
     company: {
       name: "Dellos",
     },
@@ -256,7 +256,7 @@ export const projects: Work[] = [
   {
     id: 7,
     title: "Personal Web #1",
-    type: "Project",
+    isActive: true,
     company: {
       name: "Self Employed",
     },
@@ -283,7 +283,7 @@ export const projects: Work[] = [
   {
     id: 8,
     title: "Personal Web #2",
-    type: "Project",
+    isActive: true,
     company: {
       name: "Self Employed",
     },
@@ -300,7 +300,7 @@ export const projects: Work[] = [
   {
     id: 9,
     title: "Twitter Web Menfess",
-    type: "Project",
+    isActive: true,
     company: {
       name: "Self Employed",
     },
@@ -317,7 +317,7 @@ export const projects: Work[] = [
   {
     id: 10,
     title: "Stashion Apps",
-    type: "Project",
+    isActive: false,
     company: {
       name: "Stashion",
     },
