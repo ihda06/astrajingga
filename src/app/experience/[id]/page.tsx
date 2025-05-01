@@ -31,7 +31,7 @@ export default function DetailExperiencePage({
       <motion.div
         initial={{ opacity: 0, filter: "blur(10px)" }}
         animate={{ opacity: 1, filter: "blur(0px)" }}
-        className="flex w-full flex-col justify-between p-12"
+        className="flex w-full flex-col justify-between py-12 px-6 lg:px-12"
       >
         <Header />
 
