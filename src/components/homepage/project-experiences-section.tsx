@@ -25,8 +25,7 @@ export default function ProjectExperiencesSection() {
       </div>
       <div
         className={cn(
-          "mt-6 grid gap-3 items-center ",
-          isMobile ? "grid-cols-1" : "grid-cols-2"
+          "mt-6 grid gap-3 items-center md:grid-cols-2 lg:grid-cols-3 grid-cols-1"
         )}
       >
         {projects.map((work, idx) => {

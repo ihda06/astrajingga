@@ -55,20 +55,40 @@ export default function WorkCard({
       <motion.div style={{ scale }} className="flex justify-center">
         <div className="space-y-3 relative backdrop-blur-sm bg-white/30 border shadow-inner p-6 w-full rounded-xl">
           <div className="flex justify-between">
-            <div className="-space-y-1">
-              <h1 className="text-base font-bold">{title}</h1>
-              {company?.link ? (
-                <Link
-                  href={company?.link}
-                  className="text-base block font-bold text-gray-500"
-                >
-                  {company?.name}
-                </Link>
-              ) : (
-                <span className="text-base block font-bold text-gray-500">
-                  {company?.name}
-                </span>
-              )}
+            <div className="flex gap-3 items-center">
+              <div
+                className={cn(
+                  "sm:hidden bg-white rounded-lg shadow-md p-3 flex justify-center items-center"
+                )}
+              >
+                <Image
+                  src={image}
+                  width={100}
+                  height={100}
+                  alt={title}
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    objectFit: "contain",
+                  }}
+                />
+              </div>
+
+              <div className="-space-y-1">
+                <h1 className="text-base font-bold">{title}</h1>
+                {company?.link ? (
+                  <Link
+                    href={company?.link}
+                    className="text-base block font-bold text-gray-500"
+                  >
+                    {company?.name}
+                  </Link>
+                ) : (
+                  <span className="text-base block font-bold text-gray-500">
+                    {company?.name}
+                  </span>
+                )}
+              </div>
             </div>
             <div className="text-end">
               <h1 className="text-sm">
@@ -81,7 +101,7 @@ export default function WorkCard({
             </div>
           </div>
           <div className="flex lg:flex-row flex-col gap-9">
-            <div className="w-4/6 hidden lg:flex lg:flex-col gap-3 lg:justify-between">
+            <div className="lg:w-4/6 w-full flex flex-col justify-between gap-3 ">
               <div className=" space-y-3">
                 <div className="text-xs text-justify text-ellipsis">
                   {short_description}
@@ -108,7 +128,7 @@ export default function WorkCard({
               </div>
             </div>
 
-            <div className="space-y-3 lg:w-2/6 ">
+            <div className="space-y-3 lg:inline hidden lg:w-2/6 ">
               <div
                 onClick={() => {
                   router.push(`/experience/${id}`);
