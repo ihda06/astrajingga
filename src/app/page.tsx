@@ -8,6 +8,7 @@ import SocialSection from "@/components/homepage/social-section";
 import { cn } from "@/utils/format";
 import { Metadata } from "next";
 import ProjectExperiencesSection from "@/components/homepage/project-experiences-section";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Ihda Anwari ● Home",
@@ -27,20 +28,20 @@ export default function Home() {
         </p>
         <h1 className={cn("lg:text-xl text-sm ")}>
           Started from Bootcamp{" "}
-          <a
+          <Link
             href="https://goto-impact.org/generasi-gigih/"
             className="font-bold text-emerald-500 hover:text-lg lg:hover:text-2xl duration-300"
           >
             Generasi Gigih
-          </a>
+          </Link>
           &nbsp;by GoTo Foundation in Frontend Developer Track, I am Frontend
           Developer enthusiast with a Digital Business background at{" "}
-          <a
+          <Link
             href="https://www.unpad.ac.id/"
             className="font-bold text-yellow-500 hover:text-lg lg:hover:text-2xl duration-300"
           >
             Padjadjaran University.
-          </a>
+          </Link>
           &nbsp;Passionate about merging technology with business objectives, I
           specialize in crafting frontend solutions that drive user engagement
           and align with strategic goals.
