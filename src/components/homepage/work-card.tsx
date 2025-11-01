@@ -52,7 +52,9 @@ export default function WorkCard({
         top: `calc(-${isMobile ? 0 : 24}px + ${id * (isMobile ? 120 : 90)}px)`,
       }}
     >
-      <motion.div style={{ scale }} className="flex justify-center">
+      <motion.div
+        style={{ scale: scale, display: "flex", justifyContent: "center" }}
+      >
         <div className="space-y-3 relative backdrop-blur-sm bg-white/30 border shadow-inner p-6 w-full rounded-xl">
           <div className="flex justify-between">
             <div className="flex gap-3 items-center">

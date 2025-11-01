@@ -24,7 +24,12 @@ export default function ResumeLink() {
       <motion.div
         variants={variants}
         animate={isHovered ? "visible" : "hidden"}
-        className="w-4 h-4 inline-block ml-1"
+        style={{
+          width: "1rem",
+          height: "1rem",
+          display: "inline-block",
+          marginLeft: "0.25rem",
+        }}
       >
         <LinkIcon />
       </motion.div>

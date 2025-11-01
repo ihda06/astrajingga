@@ -1,12 +1,12 @@
 "use client";
 
 import { useScroll, motion } from "framer-motion";
-import { useRef } from "react";
+import { RefObject, useRef } from "react";
 
 export default function Item() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: ref as RefObject<HTMLDivElement>,
     offset: ["end end", "start start"],
   });
 

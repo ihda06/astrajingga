@@ -1,22 +1,18 @@
-"use client";;
+"use client";
 import { use } from "react";
 
 import { projects } from "@/const/projects";
 import { motion } from "framer-motion";
 import { ArrowLeftIcon } from "@heroicons/react/16/solid";
-import {
-  ArrowTopRightOnSquareIcon,
-} from "@heroicons/react/24/outline";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 
 import Link from "next/link";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
 
-export default function DetailProjectsPage(
-  props: {
-    params: Promise<{ id: string }>;
-  }
-) {
+export default function DetailProjectsPage(props: {
+  params: Promise<{ id: string }>;
+}) {
   const params = use(props.params);
   const { id } = params;
   const router = useRouter();
@@ -28,7 +24,22 @@ export default function DetailProjectsPage(
     <motion.div
       initial={{ opacity: 0, filter: "blur(10px)" }}
       animate={{ opacity: 1, filter: "blur(0px)" }}
-      className="absolute top-0 left-0 flex min-h-screen w-full gap-6 flex-col justify-between py-36 px-24 lg:px-60 overflow-auto"
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        display: "flex",
+        minHeight: "100vh",
+        width: "100%",
+        gap: "1.5rem",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        paddingTop: "9rem",
+        paddingBottom: "9rem",
+        paddingLeft: "6rem",
+        paddingRight: "6rem",
+        overflow: "auto",
+      }}
     >
       <div
         onClick={() => {

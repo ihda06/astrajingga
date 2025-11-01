@@ -1,4 +1,4 @@
-"use client";;
+"use client";
 import { use } from "react";
 
 import { experiences } from "@/const/projects";
@@ -12,11 +12,9 @@ import Header from "@/components/layouts/header";
 import dayjs from "dayjs";
 import Head from "next/head";
 
-export default function DetailExperiencePage(
-  props: {
-    params: Promise<{ id: string }>;
-  }
-) {
+export default function DetailExperiencePage(props: {
+  params: Promise<{ id: string }>;
+}) {
   const params = use(props.params);
   const { id } = params;
 
@@ -33,7 +31,13 @@ export default function DetailExperiencePage(
       <motion.div
         initial={{ opacity: 0, filter: "blur(10px)" }}
         animate={{ opacity: 1, filter: "blur(0px)" }}
-        className="flex w-full flex-col justify-between py-12 px-6 lg:px-12"
+        style={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "between",
+          padding: "12px 6px 12px 12px",
+        }}
       >
         <Header />
 

@@ -2,7 +2,7 @@
 
 import { experiences } from "@/const/projects";
 import WorkCard from "@/components/homepage/work-card";
-import { useRef } from "react";
+import { RefObject, useRef } from "react";
 import { useScroll } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "usehooks-ts";
@@ -10,7 +10,7 @@ import { useMediaQuery } from "usehooks-ts";
 export default function ExperiencesSection() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: ref as RefObject<HTMLDivElement>,
     offset: ["start start", "end end"],
   });
 
