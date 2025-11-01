@@ -12,6 +12,7 @@ export default function Sidebar({}) {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     setIsClient(true);
   }, []);
 

@@ -1,4 +1,5 @@
-"use client";
+"use client";;
+import { use } from "react";
 
 import { projects } from "@/const/projects";
 import { motion } from "framer-motion";
@@ -11,11 +12,12 @@ import Link from "next/link";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
 
-export default function DetailProjectsPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default function DetailProjectsPage(
+  props: {
+    params: Promise<{ id: string }>;
+  }
+) {
+  const params = use(props.params);
   const { id } = params;
   const router = useRouter();
   const info = projects.find((exp) => exp.id === Number(id));

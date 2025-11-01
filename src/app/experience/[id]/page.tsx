@@ -1,4 +1,5 @@
-"use client";
+"use client";;
+import { use } from "react";
 
 import { experiences } from "@/const/projects";
 import { motion } from "framer-motion";
@@ -11,11 +12,12 @@ import Header from "@/components/layouts/header";
 import dayjs from "dayjs";
 import Head from "next/head";
 
-export default function DetailExperiencePage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default function DetailExperiencePage(
+  props: {
+    params: Promise<{ id: string }>;
+  }
+) {
+  const params = use(props.params);
   const { id } = params;
 
   const info = experiences.find((exp) => exp.id === Number(id));
