@@ -1,11 +1,13 @@
+"use client";
 import { cn } from "@/utils/format";
-import Link from "next/link";
+
 import {
   AiOutlineGithub,
   AiOutlineInstagram,
   AiOutlineLinkedin,
 } from "react-icons/ai";
-import { Button } from "@/components/ui/button";
+import React, { RefObject, useRef } from "react";
+import { useHover } from "usehooks-ts";
 
 export default function SocialSection() {
   const SocialMedia = [
@@ -36,27 +38,53 @@ export default function SocialSection() {
 
       <div className="grid grid-cols-3 text-start gap-3">
         {SocialMedia.map((item) => (
-          <div
+          <SocialCard
             key={item.title}
-            className="p-3 flex lg:flex-row flex-col items-center gap-3 rounded-lg border"
+            title={item.title}
+            link={item.link}
+            bg_color={item.bg_color}
           >
-            <div
-              className={cn(
-                item.bg_color,
-                "rounded-lg lg:w-fit lg:h-full w-full h-fit flex aspect-square items-center justify-center"
-              )}
-            >
-              <item.icon className="text-white size-10" />
-            </div>
-            <div>
-              <h5 className="font-semibold lg:block hidden">{item.title}</h5>
-              <Button variant={"outline"} size={"sm"} asChild>
-                <Link href={item.link}>Follow</Link>
-              </Button>
-            </div>
-          </div>
+            <item.icon className="text-white lg:size-10 size-5" />
+          </SocialCard>
         ))}
       </div>
     </div>
   );
 }
+
+const SocialCard = ({
+  title,
+  link,
+  children,
+  bg_color,
+}: {
+  title: string;
+  link: string;
+  children: React.ReactNode;
+  bg_color: string;
+}) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isHover = useHover(cardRef as RefObject<HTMLElement>);
+  return (
+    <div
+      ref={cardRef}
+      onClick={() => window.open(link, "_blank")}
+      className={cn(
+        bg_color,
+        "rounded-lg relative cursor-pointer lg:p-2 p-1 flex aspect-square items-center justify-center"
+      )}
+    >
+      {children}
+      <div
+        className={cn(
+          "lg:text-sm hidden lg:block animate-bounce absolute -bottom-7 left-0 right-0 text-center transition-all duration-300 ease-in-out",
+          isHover
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-2 pointer-events-none"
+        )}
+      >
+        {title}
+      </div>
+    </div>
+  );
+};
