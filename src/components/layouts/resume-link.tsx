@@ -20,7 +20,10 @@ export default function ResumeLink() {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => {
-        sendGTMEvent("download_resume", "download_resume");
+        sendGTMEvent({
+          event: "download_resume",
+          value: "download_resume",
+        });
       }}
     >
       <span>My Resume</span>
