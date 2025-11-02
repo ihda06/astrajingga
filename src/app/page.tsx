@@ -19,8 +19,8 @@ export default function Home() {
     <div className="w-full">
       <div className="h-screen w-full text-center flex flex-col gap-6 items-center justify-center">
         <Image src="/logo.png" width={100} height={100} alt="logo" />
-        <div className="bg-slate-100 rounded-full p-2 text-xs uppercase font-medium">
-          <span className="animate-pulse bg-emerald-600 rounded-full size-3 inline-block mr-2"></span>
+        <div className="bg-slate-100 rounded-full p-2 text-xs uppercase font-medium flex items-center justify-center gap-2">
+          <span className="animate-pulse bg-emerald-600 rounded-full size-3 inline-block"></span>
           Open to Work
         </div>
         <p className="tracking-widest text-gray-500">

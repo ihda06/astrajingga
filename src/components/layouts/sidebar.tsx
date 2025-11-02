@@ -3,7 +3,12 @@ import Image from "next/image";
 
 import ResumeLink from "./resume-link";
 import { useMediaQuery } from "usehooks-ts";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 
@@ -12,18 +17,20 @@ export default function Sidebar({}) {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    setIsClient(true);
+    setTimeout(() => {
+      setIsClient(true);
+    }, 100);
   }, []);
 
   if (isMobile && isClient) {
     return (
-      <div className="fixed left-0 top-0 z-30 w-full flex justify-between backdrop-blur py-3 px-3 items-center border-b-1">
+      <div className="fixed left-0 top-0 z-30 w-full flex justify-between backdrop-blur py-3 px-3 items-center border-b">
         <Sheet>
+          <SheetTitle hidden>Sidebar</SheetTitle>
           <SheetTrigger asChild>
             <Bars3Icon className="size-6" />
           </SheetTrigger>
-          <SheetContent side={"left"} autoFocus={false}>
+          <SheetContent side={"left"} autoFocus={false} className="bg-white">
             <div className="space-y-5 w-52">
               <Image
                 src="/logominiblack.png"

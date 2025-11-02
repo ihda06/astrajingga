@@ -22,6 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/logo.ico" />
+      </head>
       <body className={nunito.className}>
         <section className="flex bg-white divide-x w-screen">
           <Sidebar />
