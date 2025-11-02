@@ -1,7 +1,5 @@
 "use client";
-import Image from "next/image";
 
-import ResumeLink from "./resume-link";
 import { useMediaQuery } from "usehooks-ts";
 import {
   Sheet,
@@ -11,6 +9,7 @@ import {
 } from "@/components/ui/sheet";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
+import SidebarContent from "./SidebarContent";
 
 export default function Sidebar({}) {
   const [isClient, setIsClient] = useState(false);
@@ -31,18 +30,8 @@ export default function Sidebar({}) {
             <Bars3Icon className="size-6" />
           </SheetTrigger>
           <SheetContent side={"left"} autoFocus={false} className="bg-white">
-            <div className="space-y-5 w-52">
-              <Image
-                src="/logominiblack.png"
-                width={40}
-                height={40}
-                sizes="40px"
-                alt="logo"
-              />
-              <div className="space-y-2">
-                <h1 className="font-bold text-lg">About</h1>
-                <ResumeLink />
-              </div>
+            <div className=" w-52">
+              <SidebarContent />
             </div>
           </SheetContent>
         </Sheet>
@@ -52,18 +41,8 @@ export default function Sidebar({}) {
 
   return (
     <aside className="py-10 h-screen w-2/12 sticky top-0 divide-y max-h-screen overflow-y-auto overflow-x-hidden lg:block hidden">
-      <div className="pb-10 px-10 space-y-5 w-52">
-        <Image
-          src="/logominiblack.png"
-          width={40}
-          height={40}
-          sizes="40px"
-          alt="logo"
-        />
-        <div className="space-y-2">
-          <h1 className="font-bold text-lg">About</h1>
-          <ResumeLink />
-        </div>
+      <div className="pb-10 px-10  w-52">
+        <SidebarContent />
       </div>
     </aside>
   );

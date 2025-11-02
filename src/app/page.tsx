@@ -10,6 +10,7 @@ import { Metadata } from "next";
 import ProjectExperiencesSection from "@/components/homepage/project-experiences-section";
 import Link from "next/link";
 import TypingText from "@/components/ui/shadcn-io/typing-text";
+import HomeLayout from "@/components/layouts/HomeLayout";
 
 export const metadata: Metadata = {
   title: "Ihda Anwari ● Home",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="w-full">
+    <HomeLayout>
       <div className="h-screen w-full text-center flex flex-col gap-10 items-center justify-center">
         <div className="flex lg:flex-row flex-col w-full justify-between">
           <div className="flex gap-3 text-xs items-center justify-center">
@@ -105,6 +106,6 @@ export default function Home() {
       </div>
       <ExperiencesSection />
       <ProjectExperiencesSection />
-    </div>
+    </HomeLayout>
   );
 }

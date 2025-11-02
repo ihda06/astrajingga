@@ -4,7 +4,7 @@ import "./globals.css";
 import dayjs from "dayjs";
 import CustomParseFormat from "dayjs/plugin/customParseFormat";
 import React from "react";
-import Sidebar from "@/components/layouts/sidebar";
+import Sidebar from "@/components/layouts/sidebar/sidebar";
 import Footer from "@/components/layouts/footer";
 
 const nunito = Nunito({ subsets: ["latin"] });
@@ -28,7 +28,7 @@ export default function RootLayout({
       <body className={nunito.className}>
         <section className="flex bg-white divide-x w-screen min-h-screen ">
           <Sidebar />
-          <main className="relative lg:w-10/12 w-full flex flex-col justify-between lg:px-24 px-4 bg-[url('/bg-pattern.png')] bg-repeat">
+          <main className="relative lg:w-10/12 w-full flex flex-col justify-between  bg-[url('/bg-pattern.png')] bg-repeat">
             {children}
             <Footer />
           </main>
