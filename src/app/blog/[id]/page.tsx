@@ -42,8 +42,8 @@ export default async function BlogDetailPage(props: {
       </div>
       <div className="space-y-2">
         <h1 className="text-2xl font-bold">{blog.title}</h1>
-        <div className="flex justify-between items-center">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-col w-full text-center lg:text-start gap-3 lg:flex-row justify-between lg:items-center items-start">
+          <div className="flex items-center flex-wrap gap-2">
             <p className="text-sm text-gray-500">
               {blog.readable_publish_date}
             </p>
@@ -78,13 +78,13 @@ export default async function BlogDetailPage(props: {
         </div>
       </div>
       <Divider />
-      <div className="w-full h-96">
+      <div className="w-full h-96 flex items-center justify-center">
         <Image
           src={blog.cover_image}
           alt={blog.title}
           width={500}
           height={500}
-          className="w-full h-full object-cover"
+          className="w-full"
         />
       </div>
       <div>
