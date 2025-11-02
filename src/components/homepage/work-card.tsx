@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 
 import { cn, dayjs } from "@/utils/format";
 import { useMediaQuery } from "usehooks-ts";
+import { useEffect, useState } from "react";
 
 const duration = (startDate: string, endDate?: string) => {
   if (!endDate) {
@@ -44,12 +45,21 @@ export default function WorkCard({
 
   const scale = useTransform(progress, [0, 1], [1, targetScale]);
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setMounted(true);
+    }, 100);
+  }, []);
 
   return (
     <div
       className="sticky w-full "
       style={{
-        top: `calc(-${isMobile ? 0 : 24}px + ${id * (isMobile ? 120 : 90)}px)`,
+        top: `calc(-${mounted && isMobile ? 0 : 24}px + ${
+          id * (mounted && isMobile ? 120 : 90)
+        }px)`,
       }}
     >
       <motion.div

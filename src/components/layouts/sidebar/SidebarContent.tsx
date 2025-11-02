@@ -3,7 +3,11 @@ import ResumeLink from "../resume-link";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function SidebarContent() {
+export default function SidebarContent({
+  onClickMenu,
+}: {
+  onClickMenu: () => void;
+}) {
   return (
     <div className="space-y-5">
       <Image
@@ -14,14 +18,14 @@ export default function SidebarContent() {
         alt="logo"
       />
       <div className="space-y-2">
-        <Link href="/" className="font-bold text-lg">
+        <Link href="/" className="font-bold text-lg" onClick={onClickMenu}>
           About
         </Link>
         <ResumeLink />
       </div>
       <Divider />
       <div className="space-y-2">
-        <Link href="/blog" className="font-bold text-lg">
+        <Link href="/blog" className="font-bold text-lg" onClick={onClickMenu}>
           Blog
         </Link>
       </div>

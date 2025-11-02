@@ -2,7 +2,7 @@
 
 import { experiences } from "@/const/projects";
 import WorkCard from "@/components/homepage/work-card";
-import { RefObject, useRef } from "react";
+import { RefObject, useRef, useState, useEffect } from "react";
 import { useScroll } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "usehooks-ts";
@@ -14,13 +14,21 @@ export default function ExperiencesSection() {
     offset: ["start start", "end end"],
   });
 
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobileQuery = useMediaQuery("(max-width: 768px)");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setMounted(true);
+    }, 100);
+  }, []);
+
   return (
     <div ref={ref} className="py-5 relative">
       <h4
         className={cn(
           "tracking-[.2em] sticky text-sm text-gray-500 uppercase text-center",
-          isMobile ? "top-14" : "top-6"
+          mounted && isMobileQuery ? "top-14" : "top-6"
         )}
       >
         Work Experiences

@@ -2,7 +2,7 @@
 
 import { projects } from "@/const/projects";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -11,14 +11,21 @@ import { useMediaQuery } from "usehooks-ts";
 
 export default function ProjectExperiencesSection() {
   const ref = useRef<HTMLDivElement>(null);
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobileQuery = useMediaQuery("(max-width: 768px)");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setMounted(true);
+    }, 100);
+  }, []);
 
   return (
     <div ref={ref} className="py-5 relative">
       <div
         className={cn(
           "tracking-[.2em] text-sm text-gray-500 uppercase text-center",
-          isMobile ? "top-14" : "top-6"
+          mounted && isMobileQuery ? "top-14" : "top-6"
         )}
       >
         Project Experiences

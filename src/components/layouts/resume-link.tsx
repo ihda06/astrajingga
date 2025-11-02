@@ -14,7 +14,7 @@ export default function ResumeLink() {
 
   return (
     <a
-      href="/resume-new.pdf"
+      href="/resume.pdf"
       className="font-bold text-lg hover:underline flex items-center"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
