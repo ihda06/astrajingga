@@ -1,6 +1,7 @@
 "use client";
 
 import { LinkIcon } from "@heroicons/react/16/solid";
+import { sendGTMEvent } from "@next/third-parties/google";
 import { motion } from "framer-motion";
 
 import { useState } from "react";
@@ -18,6 +19,9 @@ export default function ResumeLink() {
       className="font-bold text-lg hover:underline flex items-center"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => {
+        sendGTMEvent("download_resume", "download_resume");
+      }}
     >
       <span>My Resume</span>
 
