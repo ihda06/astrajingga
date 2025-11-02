@@ -22,7 +22,7 @@ export default function ResumeLink() {
       onClick={() => {
         sendGTMEvent({
           event: "download_resume",
-          value: "download_resume",
+          fileName: "resume.pdf",
         });
       }}
     >
