@@ -98,6 +98,6 @@ export const SocialMedia = [
     title: "Instagram",
     link: "https://www.instagram.com/ihda.anwari/",
     icon: AiOutlineInstagram,
-    bg_color: "bg-gradient-to-br from-pink-600 to-violet-500",
+    bg_color: "bg-linear-to-br from-pink-600 to-violet-500",
   },
 ];

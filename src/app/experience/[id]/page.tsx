@@ -2,7 +2,7 @@
 import { use } from "react";
 
 import { experiences } from "@/const/projects";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 import { BuildingOffice2Icon } from "@heroicons/react/24/outline";
 import Image from "next/image";
@@ -96,9 +96,9 @@ export default function DetailExperiencePage(props: {
             <div>
               <h4 className="font-bold">Timeline</h4>
               <span className="text-xs">
-                {dayjs(info.startDate, "DD/MM/YYYY").format("MMM YYYY")} -{" "}
-                {dayjs(info.endDate, "DD/MM/YYYY").isValid() && info.endDate
-                  ? dayjs(info.endDate, "DD/MM/YYYY").format("MMM YYYY")
+                {dayjs(info.startDate).format("MMM YYYY")} -{" "}
+                {info.endDate && dayjs(info.endDate).isValid()
+                  ? dayjs(info.endDate).format("MMM YYYY")
                   : "Present"}
               </span>
             </div>

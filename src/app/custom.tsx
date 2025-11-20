@@ -1,6 +1,6 @@
 "use client";
 
-import { useScroll, motion } from "framer-motion";
+import { useScroll, motion } from "motion/react";
 import { RefObject, useRef } from "react";
 
 export default function Item() {

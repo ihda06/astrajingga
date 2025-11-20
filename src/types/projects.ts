@@ -13,7 +13,7 @@ export type Work = {
   skills?: string[];
   link?: {
     liveLink?: string;
-    githubLink?: string;
+    githubLink?: string | null;
   };
   company?: {
     name: string;
@@ -38,14 +38,13 @@ export type Project = {
   skills?: string[];
   link?: {
     liveLink?: string;
-    githubLink?: string;
+    githubLink?: string | null;
   };
   company?: {
     name: string;
     link?: string;
   };
-  startDate: string;
-  endDate?: string;
+  date: string; // ISO 8601 format (YYYY-MM-DD) - represents release or last update date
   images?: string[];
   isActive: boolean;
 };

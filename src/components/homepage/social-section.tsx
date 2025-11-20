@@ -28,12 +28,12 @@ export default function SocialSection() {
       title: "Instagram",
       link: "https://www.instagram.com/ihda.anwari/",
       icon: AiOutlineInstagram,
-      bg_color: "bg-gradient-to-br from-pink-600 to-violet-500",
+      bg_color: "bg-linear-to-br from-pink-600 to-violet-500",
     },
   ];
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 lg:px-24 px-4">
       <h3 className="tracking-widest text-gray-500">Contact</h3>
 
       <div className="grid grid-cols-3 text-start gap-3">

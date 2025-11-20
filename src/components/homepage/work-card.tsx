@@ -5,22 +5,18 @@ import Image from "next/image";
 
 import Link from "next/link";
 
-import { MotionValue, motion, useTransform } from "framer-motion";
+import { motion, useTransform, useScroll } from "motion/react";
 import Marquee from "react-fast-marquee";
 import { useRouter } from "next/navigation";
 
 import { cn, dayjs } from "@/utils/format";
-import { useMediaQuery } from "usehooks-ts";
-import { useEffect, useState } from "react";
+import { useRef, RefObject } from "react";
 
 const duration = (startDate: string, endDate?: string) => {
   if (!endDate) {
-    return dayjs().diff(dayjs(startDate, "DD/MM/YYYY"), "month");
+    return dayjs().diff(dayjs(startDate), "month");
   }
-  const duration = dayjs(endDate, "DD/MM/YYYY").diff(
-    dayjs(startDate, "DD/MM/YYYY"),
-    "month"
-  );
+  const duration = dayjs(endDate).diff(dayjs(startDate), "month");
 
   return duration > 0 ? duration : 1;
 };
@@ -31,41 +27,48 @@ export default function WorkCard({
   image,
   startDate,
   endDate,
-  progress,
   targetScale,
   achievements,
   short_description,
   stacks,
+  index,
 }: Work & {
   index: number;
   targetScale: number;
-  progress: MotionValue<number>;
 }) {
   const router = useRouter();
+  const cardRef = useRef<HTMLDivElement>(null);
 
-  const scale = useTransform(progress, [0, 1], [1, targetScale]);
-  const isMobile = useMediaQuery("(max-width: 768px)");
-  const [mounted, setMounted] = useState(false);
+  // Each card tracks its own scroll progress
+  const { scrollYProgress } = useScroll({
+    target: cardRef as RefObject<HTMLDivElement>,
+    offset: ["start end", "end start"],
+  });
 
-  useEffect(() => {
-    setTimeout(() => {
-      setMounted(true);
-    }, 100);
-  }, []);
+  // Scale from initial size to full size (1) as card comes forward
+  // Cards behind start smaller and scale up as they move forward
+  const scale = useTransform(scrollYProgress, [0, 1], [targetScale, 1]);
+
+  const y = useTransform(scrollYProgress, [0, 1], [30, 0]);
 
   return (
     <div
-      className="sticky w-full "
+      ref={cardRef}
+      className="sticky w-full  lg:px-24 px-4"
       style={{
-        top: `calc(-${mounted && isMobile ? 0 : 24}px + ${
-          id * (mounted && isMobile ? 120 : 90)
-        }px)`,
+        top: `${index * 20 + 180}px`,
+        zIndex: index + 1,
       }}
     >
       <motion.div
-        style={{ scale: scale, display: "flex", justifyContent: "center" }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          scale,
+          y,
+        }}
       >
-        <div className="space-y-3 relative backdrop-blur-sm bg-white/30 border shadow-inner p-6 w-full rounded-xl">
+        <div className="space-y-3 relative backdrop-blur-lg bg-linear-to-r from-sky-50/40 via-emerald-50/40 to-amber-50/40 border shadow-inner p-6 w-full rounded-xl">
           <div className="flex justify-between">
             <div className="flex gap-3 items-center">
               <div
@@ -105,9 +108,7 @@ export default function WorkCard({
               </div>
             </div>
             <div className="text-end">
-              <h1 className="text-sm">
-                {dayjs(startDate, "DD/MM/YYYY").format("YYYY")}
-              </h1>
+              <h1 className="text-sm">{dayjs(startDate).format("YYYY")}</h1>
               <h1 className="text-xs text-gray-500">
                 {duration(startDate, endDate)}
                 &nbsp;Months
@@ -124,11 +125,13 @@ export default function WorkCard({
                 <dl className="space-y-1">
                   <dt className="text-xs font-bold">Achievement</dt>
                   <dd className="text-xs">
-                    {achievements?.map((achievement) => (
-                      <li key={achievement} className="list-decimal">
-                        {achievement}
-                      </li>
-                    ))}
+                    <ul className="list-decimal">
+                      {achievements?.map((achievement) => (
+                        <li key={achievement} className="ml-4">
+                          {achievement}
+                        </li>
+                      ))}
+                    </ul>
                   </dd>
                 </dl>
               </div>

@@ -45,12 +45,12 @@ export const experiences: Work[] = [
     ],
     stacks: [Stack.REACT, Stack.TAILWIND, Stack.NEXT_JS],
     link: {
-      githubLink: "",
+      githubLink: null,
       liveLink: "",
     },
     image: "/satudental.webp",
-    startDate: "01/11/2023",
-    endDate: "30/10/2024",
+    startDate: "2023-11-01",
+    endDate: "2024-10-30",
     images: [
       "/satudental/doc2.png",
       "/satudental/doc1.png",
@@ -91,7 +91,7 @@ export const experiences: Work[] = [
       "This was my first experience as a full-stack developer, where I was tasked with designing databases, including table creation, API development, and integration. I utilized Oracle as the database system for practical implementation. Additionally, I developed websites using templates based on JSON schema and conducted peer reviews to enhance the quality of the code produced. This experience significantly broadened my skills and understanding of full-stack development.",
     stacks: [Stack.VUE, Stack.CSS, Stack.VITE, Stack.ORACLE],
     link: {
-      githubLink: "",
+      githubLink: null,
       liveLink: "",
     },
     image: "/antares2.png",
@@ -103,8 +103,8 @@ export const experiences: Work[] = [
       "/antares/antares-5.png",
       "/antares/antares-6.png",
     ],
-    startDate: "01/01/2023",
-    endDate: "30/06/2023",
+    startDate: "2023-01-01",
+    endDate: "2023-06-30",
   },
   {
     id: 3,
@@ -144,7 +144,7 @@ export const experiences: Work[] = [
       "This internship was part of my academic requirements and was secured through the Magang Merdeka portal by the Ministry of Education and Culture. It significantly expanded my knowledge and experience, particularly in using Vue.js. The senior team members were incredibly supportive, and for the first time, I was directly involved in the Scrum Agile methodology. This experience also enhanced my skills in creating design systems as a front-end engineer and improved my understanding of unit testing. Overall, this internship has been the best experience I've had so far.",
     stacks: [Stack.VUE, Stack.CSS, Stack.NUXT],
     link: {
-      githubLink: "",
+      githubLink: null,
       liveLink: "",
     },
     image: "/sekolahmu.png",
@@ -157,8 +157,8 @@ export const experiences: Work[] = [
       "/sekolahmu/sekolahmu-5.png",
       "/sekolahmu/sekolahmu-6.png",
     ],
-    startDate: "01/09/2022",
-    endDate: "01/12/2022",
+    startDate: "2022-09-01",
+    endDate: "2022-12-01",
   },
   {
     id: 4,
@@ -189,12 +189,12 @@ export const experiences: Work[] = [
       "My first internship experience was a result of my achievements during the Generasi Gigih bootcamp, which provided exclusive opportunities for high-performing participants. This internship broadened my perspective on working remotely with companies in Singapore and abroad. I was mentored by distinguished professionals such as Hamdi Syarif from AVPN and Nico Samuel from GoTo, who guided and supported me in understanding various aspects of the job. This opportunity not only enhanced my knowledge and experience but also boosted my confidence to pursue higher career goals in the future.",
     stacks: [Stack.REACT, Stack.CSS, Stack.AIRTABLE],
     link: {
-      githubLink: "",
+      githubLink: null,
       liveLink: "",
     },
     image: "/avpn.png",
-    startDate: "01/05/2022",
-    endDate: "31/08/2022",
+    startDate: "2022-05-01",
+    endDate: "2022-08-31",
     images: ["/avpn/avpn-1.png", "/avpn/avpn-2.png", "/avpn/avpn-3.png"],
   },
 ];
@@ -222,8 +222,7 @@ export const projects: Project[] = [
       liveLink: "https://synapsis-test-ihda.vercel.app/",
     },
     image: "/synapsis2.png",
-    startDate: "June 2024",
-    endDate: "June 2024",
+    date: "2024-06-01",
   },
   {
     id: 6,
@@ -250,8 +249,7 @@ export const projects: Project[] = [
       liveLink: "https://dellos-test.vercel.app/",
     },
     image: "/dellos.png",
-    startDate: "June 2024",
-    endDate: "June 2024",
+    date: "2024-06-01",
   },
   {
     id: 7,
@@ -277,8 +275,7 @@ export const projects: Project[] = [
       liveLink: "https://ihdas-playground.vercel.app/",
     },
     image: "/personal-1.png",
-    startDate: "November 2023",
-    endDate: "November 2023",
+    date: "2023-11-01",
   },
   {
     id: 8,
@@ -287,15 +284,15 @@ export const projects: Project[] = [
     company: {
       name: "Self Employed",
     },
-    description: "",
+    description:
+      "This is my second personal portfolio website, built with Next.js and Tailwind CSS. It features a modern, responsive design with improved UI/UX compared to my first portfolio. The site showcases my projects, work experiences, and skills in a clean and professional layout.",
     stacks: [Stack.REACT, Stack.TAILWIND, Stack.NEXT_JS],
     link: {
       githubLink: "https://github.com/ihda06/astra-jingga",
       liveLink: "https://ihda-anwari.vercel.app/",
     },
     image: "/personal-2.png",
-    startDate: "November 2023",
-    endDate: "November 2023",
+    date: "2023-11-01",
   },
   {
     id: 9,
@@ -304,15 +301,15 @@ export const projects: Project[] = [
     company: {
       name: "Self Employed",
     },
-    description: "",
+    description:
+      "A Twitter-style anonymous confession web application built with Next.js and Tailwind CSS. Users can post anonymous messages and interact with them in a Twitter-like interface. This project demonstrates my ability to create interactive social media-style applications with modern web technologies.",
     stacks: [Stack.REACT, Stack.TAILWIND, Stack.NEXT_JS],
     link: {
       githubLink: "https://github.com/ihda06/astra-webapp",
       liveLink: "https://astra-webapp.vercel.app/twitter-menfess",
     },
     image: "/personal-3.png",
-    startDate: "November 2023",
-    endDate: "November 2023",
+    date: "2023-11-01",
   },
   {
     id: 10,
@@ -321,14 +318,14 @@ export const projects: Project[] = [
     company: {
       name: "Stashion",
     },
-    description: "",
+    description:
+      "A fashion and styling web application developed for Stashion. This project involved creating a responsive e-commerce style interface for fashion-related content. The application features modern UI components and seamless user experience for browsing fashion items and styling content.",
     stacks: [Stack.REACT, Stack.TAILWIND, Stack.NEXT_JS],
     link: {
-      githubLink: "",
+      githubLink: null,
       liveLink: "https://stashion.website/",
     },
     image: "/stashion.png",
-    startDate: "June 2023",
-    endDate: "June 2023",
+    date: "2023-06-01",
   },
 ];

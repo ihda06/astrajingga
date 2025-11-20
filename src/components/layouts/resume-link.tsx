@@ -2,7 +2,7 @@
 
 import { LinkIcon } from "@heroicons/react/16/solid";
 import { sendGTMEvent } from "@next/third-parties/google";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 import { useState } from "react";
 

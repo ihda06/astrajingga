@@ -2,7 +2,7 @@
 import { use } from "react";
 
 import { projects } from "@/const/projects";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ArrowLeftIcon } from "@heroicons/react/16/solid";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 
@@ -80,7 +80,10 @@ export default function DetailProjectsPage(props: {
           <div>
             <h1 className="text-xl font-bold">{info.title}</h1>
             <small className="text-gray-500">
-              {info.startDate} - {info.endDate}
+              {new Date(info.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+              })}
             </small>
           </div>
           <div className="flex gap-3">
@@ -107,9 +110,12 @@ export default function DetailProjectsPage(props: {
         <p>{info.description}</p>
         <div className="pt-3 grid lg:grid-cols-3 grid-cols-1 gap-2">
           <div className="">
-            <h4 className="font-bold">Timeline</h4>
+            <h4 className="font-bold">Released</h4>
             <span className="text-xs">
-              {info.startDate} - {info.endDate || "Present"}
+              {new Date(info.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+              })}
             </span>
           </div>
           <div className="">
