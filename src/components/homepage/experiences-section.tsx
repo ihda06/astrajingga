@@ -24,15 +24,15 @@ export default function ExperiencesSection() {
   }, []);
 
   return (
-    <div ref={ref} className="py-5 relative">
-      <h4
+    <section ref={ref} className="py-5 relative" aria-label="Work Experiences">
+      <h2
         className={cn(
           "tracking-[.2em] sticky text-sm text-gray-500 uppercase text-center",
           mounted && isMobileQuery ? "top-14" : "top-6"
         )}
       >
         Work Experiences
-      </h4>
+      </h2>
       <div className="space-y-6 mt-6 flex flex-col items-center">
         {experiences.map((work, idx) => {
           const targetScale = 1 - (experiences.length - idx) * 0.05;
@@ -47,6 +47,6 @@ export default function ExperiencesSection() {
           );
         })}
       </div>
-    </div>
+    </section>
   );
 }

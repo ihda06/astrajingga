@@ -25,14 +25,27 @@ export default function Sidebar({}) {
     return (
       <div className="fixed left-0 top-0 z-30 w-full flex justify-between backdrop-blur py-3 px-3 items-center border-b">
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTitle hidden>Sidebar</SheetTitle>
-          <SheetTrigger asChild>
-            <Bars3Icon className="size-6" />
+          <SheetTitle hidden>Navigation Menu</SheetTitle>
+          <SheetTrigger
+            asChild
+            aria-label="Open navigation menu"
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
+          >
+            <button type="button" className="p-2">
+              <Bars3Icon className="size-6" aria-hidden="true" />
+            </button>
           </SheetTrigger>
-          <SheetContent side={"left"} autoFocus={false} className="bg-white">
-            <div className="w-full">
+          <SheetContent
+            id="mobile-navigation"
+            side={"left"}
+            autoFocus={false}
+            className="bg-white"
+            aria-label="Navigation menu"
+          >
+            <nav className="w-full" aria-label="Main navigation">
               <SidebarContent onClickMenu={() => setIsOpen(false)} />
-            </div>
+            </nav>
           </SheetContent>
         </Sheet>
       </div>
@@ -40,8 +53,11 @@ export default function Sidebar({}) {
   }
 
   return (
-    <aside className="py-10 h-screen w-2/12 sticky top-0 divide-y max-h-screen overflow-y-auto overflow-x-hidden lg:block hidden">
-      <div className="pb-10 px-10  w-52">
+    <aside
+      className="py-10 h-screen w-2/12 sticky top-0 divide-y max-h-screen overflow-y-auto overflow-x-hidden lg:block hidden"
+      aria-label="Sidebar navigation"
+    >
+      <div className="pb-10 px-10 w-52">
         <SidebarContent onClickMenu={() => setIsOpen(false)} />
       </div>
     </aside>

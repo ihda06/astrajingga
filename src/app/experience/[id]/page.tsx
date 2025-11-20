@@ -47,9 +47,11 @@ export default function DetailExperiencePage(props: {
               <div className="size-36 p-4 rounded-lg bg-slate-100 border flex items-center justify-center">
                 <Image
                   src={info.image}
-                  alt="company logo"
-                  width={100}
-                  height={100}
+                  alt={`${info.company?.name || ""} company logo`}
+                  width={144}
+                  height={144}
+                  sizes="144px"
+                  priority
                 ></Image>
               </div>
             </div>
@@ -63,8 +65,11 @@ export default function DetailExperiencePage(props: {
                 <Link
                   href={info.company?.link || ""}
                   className="p-2 rounded-full hover:bg-gray-200 duration-300 block"
+                  aria-label={`Visit ${info.company?.name || "company"} website`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <BuildingOffice2Icon className="size-6" />
+                  <BuildingOffice2Icon className="size-6" aria-hidden="true" />
                 </Link>
               </div>
             </div>
@@ -132,9 +137,12 @@ export default function DetailExperiencePage(props: {
                   src={img}
                   placeholder="blur"
                   blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-                  alt="documentation"
+                  alt={`${info.title} documentation image ${i + 1}`}
                   fill
+                  loading={i === 0 ? "eager" : "lazy"}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
                   className="object-contain"
+                  quality={85}
                 ></Image>
               </div>
             ))}

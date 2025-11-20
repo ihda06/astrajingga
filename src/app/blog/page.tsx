@@ -8,17 +8,22 @@ export default async function BlogPage() {
   return (
     <>
       <MainHeader />
-      <div>
+      <div aria-live="polite" aria-atomic="true">
         {blogs.length === 0 ? (
           <p>No blogs found.</p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {blogs.map((blog) => (
-              <Link key={blog.id} href={`/blog/${blog.id}`}>
-                <BlogCard {...blog} />
-              </Link>
-            ))}
-          </div>
+          <>
+            <span className="sr-only">
+              Loaded {blogs.length} blog {blogs.length === 1 ? "post" : "posts"}
+            </span>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {blogs.map((blog) => (
+                <Link key={blog.id} href={`/blog/${blog.id}`}>
+                  <BlogCard {...blog} />
+                </Link>
+              ))}
+            </div>
+          </>
         )}
       </div>
     </>

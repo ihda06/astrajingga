@@ -63,18 +63,20 @@ const SocialCard = ({
   children: React.ReactNode;
   bg_color: string;
 }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLButtonElement>(null);
   const isHover = useHover(cardRef as RefObject<HTMLElement>);
   return (
-    <div
+    <button
+      type="button"
       ref={cardRef}
-      onClick={() => window.open(link, "_blank")}
+      onClick={() => window.open(link, "_blank", "noopener,noreferrer")}
       className={cn(
         bg_color,
         "rounded-lg relative cursor-pointer lg:p-2 p-1 flex aspect-square items-center justify-center"
       )}
+      aria-label={`Visit my ${title} profile`}
     >
-      {children}
+      <span aria-hidden="true">{children}</span>
       <div
         className={cn(
           "lg:text-sm hidden lg:block animate-bounce absolute -bottom-7 left-0 right-0 text-center transition-all duration-300 ease-in-out",
@@ -82,9 +84,10 @@ const SocialCard = ({
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-2 pointer-events-none"
         )}
+        aria-hidden="true"
       >
         {title}
       </div>
-    </div>
+    </button>
   );
 };

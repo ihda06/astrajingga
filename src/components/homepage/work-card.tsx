@@ -75,9 +75,11 @@ export default function WorkCard({
               >
                 <Image
                   src={image}
-                  width={100}
-                  height={100}
-                  alt={title}
+                  width={20}
+                  height={20}
+                  alt={`${company?.name || ""} logo`}
+                  loading="lazy"
+                  sizes="20px"
                   style={{
                     width: "20px",
                     height: "20px",
@@ -150,9 +152,11 @@ export default function WorkCard({
                 <div className={cn("flex items-center")}>
                   <Image
                     src={image}
-                    width={100}
-                    height={100}
-                    alt={title}
+                    width={150}
+                    height={150}
+                    alt={`${company?.name || ""} logo`}
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100px, 150px"
                     style={{ width: "auto", height: "auto" }}
                   />
                 </div>

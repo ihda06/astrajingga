@@ -12,10 +12,24 @@ export default function BlogCard({
   comments_count,
   public_reactions_count,
 }: Blog) {
+  // Blur data URL for placeholder
+  const blurDataURL =
+    "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==";
+
   return (
-    <div className="w-full bg-white space-y-3 p-4 border h-full flex flex-col rounded-lg">
-      <div className="w-full h-48 flex items-center justify-center overflow-hidden">
-        <Image src={cover_image} alt={title} width={500} height={500} />
+    <article className="w-full bg-white space-y-3 p-4 border h-full flex flex-col rounded-lg">
+      <div className="w-full h-48 relative flex items-center justify-center overflow-hidden rounded-lg">
+        <Image
+          src={cover_image}
+          alt={title}
+          fill
+          loading="lazy"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          placeholder="blur"
+          blurDataURL={blurDataURL}
+          className="object-cover"
+          quality={85}
+        />
       </div>
 
       <div className="flex flex-col flex-1 justify-between">
@@ -44,6 +58,6 @@ export default function BlogCard({
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 }

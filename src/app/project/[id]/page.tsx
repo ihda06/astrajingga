@@ -9,6 +9,8 @@ import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
+import { generateStructuredData } from "@/lib/metadata";
+import { useEffect } from "react";
 
 export default function DetailProjectsPage(props: {
   params: Promise<{ id: string }>;
@@ -17,6 +19,29 @@ export default function DetailProjectsPage(props: {
   const { id } = params;
   const router = useRouter();
   const info = projects.find((exp) => exp.id === Number(id));
+
+  useEffect(() => {
+    if (info) {
+      const structuredData = generateStructuredData("CreativeWork", {
+        name: info.title,
+        description:
+          info.description || `${info.title} - A project by Ihda Anwari`,
+        image: `${
+          process.env.NEXT_PUBLIC_BASE_URL || "https://ihda-anwari.vercel.app"
+        }${info.image}`,
+      });
+
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.text = JSON.stringify(structuredData);
+      document.head.appendChild(script);
+
+      return () => {
+        document.head.removeChild(script);
+      };
+    }
+  }, [info]);
+
   if (!info) {
     return <div>Not Found</div>;
   }
@@ -41,14 +66,15 @@ export default function DetailProjectsPage(props: {
         overflow: "auto",
       }}
     >
-      <div
+      <button
         onClick={() => {
           router.back();
         }}
         className="fixed top-4 left-4 p-2 z-10 rounded-full cursor-pointer hover:bg-white duration-300"
+        aria-label="Go back to previous page"
       >
         <ArrowLeftIcon className="size-6" />
-      </div>
+      </button>
       <div className="flex flex-col gap-6 ">
         <div className="flex items-center justify-between">
           <div>
@@ -61,14 +87,18 @@ export default function DetailProjectsPage(props: {
             <Link
               href={info.link?.liveLink || ""}
               target="_blank"
+              rel="noopener noreferrer"
               className="hover:bg-gray-200 rounded-full duration-300 p-2"
+              aria-label={`View ${info.title} live project`}
             >
               <ArrowTopRightOnSquareIcon className="size-6 " />
             </Link>
             <Link
-              href={info.link?.liveLink || ""}
+              href={info.link?.githubLink || ""}
               target="_blank"
+              rel="noopener noreferrer"
               className="hover:bg-gray-200 rounded-full duration-300 p-2"
+              aria-label={`View ${info.title} on GitHub`}
             >
               <GitHubLogoIcon className="size-6 " />
             </Link>

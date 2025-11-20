@@ -21,15 +21,15 @@ export default function ProjectExperiencesSection() {
   }, []);
 
   return (
-    <div ref={ref} className="py-5 relative">
-      <div
+    <section ref={ref} className="py-5 relative" aria-label="Project Experiences">
+      <h2
         className={cn(
           "tracking-[.2em] text-sm text-gray-500 uppercase text-center",
           mounted && isMobileQuery ? "top-14" : "top-6"
         )}
       >
         Project Experiences
-      </div>
+      </h2>
       <div
         className={cn(
           "mt-6 grid gap-3 items-center md:grid-cols-2 lg:grid-cols-3 grid-cols-1"
@@ -39,6 +39,6 @@ export default function ProjectExperiencesSection() {
           return <ProjectCard key={work.title + idx} {...work}></ProjectCard>;
         })}
       </div>
-    </div>
+    </section>
   );
 }
