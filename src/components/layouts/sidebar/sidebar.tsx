@@ -51,7 +51,7 @@ export default function Sidebar({}) {
             id="mobile-navigation"
             side={"left"}
             autoFocus={false}
-            className="bg-linear-to-br from-emerald-50/50 via-sky-50/30 to-white backdrop-blur-sm border-r border-gray-200/30 rounded-r-2xl"
+            className="bg-linear-to-br from-emerald-50 via-sky-50 to-white backdrop-blur-sm border-r border-gray-200/30 rounded-r-2xl"
             aria-label="Navigation menu"
           >
             <nav className="w-full h-full" aria-label="Main navigation">
