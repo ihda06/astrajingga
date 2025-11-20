@@ -1,22 +1,22 @@
 "use client";
 
-import { LinkIcon } from "@heroicons/react/16/solid";
+import { DocumentTextIcon } from "@heroicons/react/24/outline";
 import { sendGTMEvent } from "@next/third-parties/google";
 import { motion } from "motion/react";
-
+import { cn } from "@/lib/utils";
 import { useState } from "react";
 
 export default function ResumeLink() {
   const [isHovered, setIsHovered] = useState(false);
-  const variants = {
-    hidden: { opacity: 0, x: 5 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
-  };
 
   return (
-    <a
+    <motion.a
       href="/resume.pdf"
-      className="font-bold text-lg hover:underline flex items-center"
+      className={cn(
+        "group relative flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300",
+        "font-bold text-lg",
+        "text-gray-700 hover:text-emerald-600 hover:bg-gray-50"
+      )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => {
@@ -25,21 +25,33 @@ export default function ResumeLink() {
           fileName: "resume.pdf",
         });
       }}
+      whileHover={{ x: 2 }}
+      transition={{ duration: 0.2 }}
     >
-      <span>My Resume</span>
-
-      <motion.div
-        variants={variants}
-        animate={isHovered ? "visible" : "hidden"}
-        style={{
-          width: "1rem",
-          height: "1rem",
-          display: "inline-block",
-          marginLeft: "0.25rem",
-        }}
+      <DocumentTextIcon
+        className={cn(
+          "size-5 transition-all duration-300",
+          "text-gray-400 group-hover:text-emerald-600"
+        )}
+        aria-hidden="true"
+      />
+      <span className="relative">
+        My Resume
+        <motion.span
+          className="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald-600"
+          animate={isHovered ? { width: "100%" } : { width: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        />
+      </span>
+      <motion.span
+        className="ml-auto text-emerald-600"
+        initial={{ opacity: 0, x: -5 }}
+        animate={isHovered ? { opacity: 1, x: 0 } : { opacity: 0, x: -5 }}
+        transition={{ duration: 0.2 }}
+        aria-hidden="true"
       >
-        <LinkIcon />
-      </motion.div>
-    </a>
+        →
+      </motion.span>
+    </motion.a>
   );
 }
