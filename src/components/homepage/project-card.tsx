@@ -1,16 +1,15 @@
 import { Project } from "@/types/projects";
 import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
-import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+import { FaArrowUpRightFromSquare, FaArrowRight } from "react-icons/fa6";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { ButtonLink } from "@/components/ui/button-link";
 import { Badge } from "@/components/ui/badge";
 import { dayjs } from "@/utils/format";
 
@@ -19,11 +18,14 @@ export default function ProjectCard({ ...props }: Project) {
   const blurDataURL =
     "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==";
 
+  const displayImage =
+    props.images && props.images.length > 0 ? props.images[0] : props.image;
+
   return (
     <Card className="group bg-white h-full flex flex-col overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
       <div className="relative w-full h-48 overflow-hidden bg-muted/50">
         <Image
-          src={props.image}
+          src={displayImage}
           alt={props.title}
           fill
           loading="lazy"
@@ -33,13 +35,17 @@ export default function ProjectCard({ ...props }: Project) {
           className="object-cover transition-transform duration-300 group-hover:scale-105"
           quality={85}
         />
-        {!props.isActive && (
+        {props.status !== "active" && (
           <div className="absolute top-2 right-2">
             <Badge
               variant="outline"
-              className="text-xs text-red-500 bg-red-500/10 border-red-500"
+              className={`text-xs ${
+                props.status === "dead"
+                  ? "text-orange-500 bg-orange-500/10 border-orange-500"
+                  : "text-gray-500 bg-gray-500/10 border-gray-500"
+              }`}
             >
-              Inactive
+              {props.status === "dead" ? "Dead" : "Inactive"}
             </Badge>
           </div>
         )}
@@ -51,11 +57,6 @@ export default function ProjectCard({ ...props }: Project) {
             {dayjs(props.date).format("MMM YYYY")}
           </span>
         </div>
-        {props.company?.name && (
-          <CardDescription className="text-xs">
-            {props.company.name}
-          </CardDescription>
-        )}
       </CardHeader>
       <CardContent className="flex-1 space-y-4">
         <p className="text-sm text-muted-foreground line-clamp-3">
@@ -75,34 +76,46 @@ export default function ProjectCard({ ...props }: Project) {
           </div>
         )}
       </CardContent>
-      <CardFooter className="flex gap-2 pt-4">
-        <Button
-          type="button"
-          onClick={() => window.open(props.link?.liveLink || "#")}
-          disabled={!props.isActive}
-          variant="outline"
+      <CardFooter className="flex flex-col gap-2 pt-4">
+        <ButtonLink
+          href={`/project/${props.id}`}
+          variant="default"
           size="sm"
-          className="flex-1 gap-2"
-          aria-label={`View ${props.title} project`}
+          className="w-full gap-2"
+          aria-label={`View details for ${props.title}`}
         >
-          <FaArrowUpRightFromSquare
-            className="h-3.5 w-3.5"
-            aria-hidden="true"
-          />
-          <span>View Project</span>
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          className="flex-1 gap-2"
-          aria-label={`View ${props.title} on GitHub`}
-          disabled={!props.link?.githubLink || props.link?.githubLink === null}
-          onClick={() => window.open(props.link?.githubLink || "#")}
-          type="button"
-        >
-          <FaGithub className="h-3.5 w-3.5" aria-hidden="true" />
-          <span>GitHub</span>
-        </Button>
+          <span>View Details</span>
+          <FaArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+        </ButtonLink>
+        <div className="flex gap-2">
+          <ButtonLink
+            href={props.link?.liveLink || "#"}
+            disabled={props.status !== "active"}
+            variant="outline"
+            size="sm"
+            className="flex-1 gap-2"
+            aria-label={`View ${props.title} project`}
+          >
+            <FaArrowUpRightFromSquare
+              className="h-3.5 w-3.5"
+              aria-hidden="true"
+            />
+            <span>View Project</span>
+          </ButtonLink>
+          <ButtonLink
+            href={props.link?.githubLink || "#"}
+            variant="outline"
+            size="sm"
+            className="flex-1 gap-2"
+            aria-label={`View ${props.title} on GitHub`}
+            disabled={
+              !props.link?.githubLink || props.link?.githubLink === null
+            }
+          >
+            <FaGithub className="h-3.5 w-3.5" aria-hidden="true" />
+            <span>GitHub</span>
+          </ButtonLink>
+        </div>
       </CardFooter>
     </Card>
   );

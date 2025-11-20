@@ -1,16 +1,18 @@
 "use client";
-import { use } from "react";
+import { use, useEffect } from "react";
 
 import { experiences } from "@/const/projects";
 import { motion } from "motion/react";
-
-import { BuildingOffice2Icon } from "@heroicons/react/24/outline";
-import Image from "next/image";
-import Link from "next/link";
-
 import Header from "@/components/layouts/header";
 import dayjs from "dayjs";
-import Head from "next/head";
+
+import ExperienceHero from "@/components/experience/experience-hero";
+import ExperienceOverview from "@/components/experience/experience-overview";
+import ExperienceResponsibilities from "@/components/experience/experience-responsibilities";
+import ExperienceSkills from "@/components/experience/experience-skills";
+import ExperienceTechnologies from "@/components/experience/experience-technologies";
+import ExperienceDocumentation from "@/components/experience/experience-documentation";
+import ExperienceNotFound from "@/components/experience/experience-not-found";
 
 export default function DetailExperiencePage(props: {
   params: Promise<{ id: string }>;
@@ -19,136 +21,133 @@ export default function DetailExperiencePage(props: {
   const { id } = params;
 
   const info = experiences.find((exp) => exp.id === Number(id));
+
+  // Generate structured data for SEO using OrganizationRole schema
+  useEffect(() => {
+    if (info) {
+      const baseUrl =
+        process.env.NEXT_PUBLIC_BASE_URL || "https://ihda-anwari.vercel.app";
+
+      // Create OrganizationRole structured data (more appropriate than JobPosting)
+      const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "OrganizationRole",
+        roleName: info.title,
+        description: info.description || info.short_description || "",
+        startDate: info.startDate,
+        endDate: info.endDate || undefined,
+        identifier: {
+          "@type": "PropertyValue",
+          name: "Ihda Anwari Portfolio",
+          value: `experience-${info.id}`,
+        },
+        numberedPosition: info.id,
+        roleCategory: info.type,
+        skills: info.skills?.join(", ") || "",
+        workLocation: info.location
+          ? {
+              "@type": "Place",
+              name: info.location,
+            }
+          : undefined,
+        organization: info.company?.name
+          ? {
+              "@type": "Organization",
+              name: info.company.name,
+              url: info.company.link || undefined,
+            }
+          : undefined,
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": `${baseUrl}/experience/${info.id}`,
+        },
+      };
+
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.text = JSON.stringify(structuredData);
+      document.head.appendChild(script);
+
+      return () => {
+        const existingScript = document.querySelector(
+          'script[type="application/ld+json"]'
+        );
+        if (
+          existingScript &&
+          existingScript.textContent?.includes(`experience-${info.id}`)
+        ) {
+          document.head.removeChild(existingScript);
+        }
+      };
+    }
+  }, [info]);
+
   if (!info) {
-    return <div>Not Found</div>;
+    return <ExperienceNotFound />;
   }
 
+  const durationMonths =
+    info.endDate && dayjs(info.endDate).isValid()
+      ? dayjs(info.endDate).diff(dayjs(info.startDate), "month")
+      : dayjs().diff(dayjs(info.startDate), "month");
+
   return (
-    <>
-      <Head>
-        <title>Ihda Anwari - </title>
-      </Head>
+    <article>
       <motion.div
         initial={{ opacity: 0, filter: "blur(10px)" }}
         animate={{ opacity: 1, filter: "blur(0px)" }}
+        transition={{ duration: 0.5 }}
         style={{
           flex: 1,
           display: "flex",
           flexDirection: "column",
-          justifyContent: "between",
+          justifyContent: "space-between",
           padding: "12px 6px 12px 12px",
         }}
       >
-        <Header />
+        <Header
+          crumbs={[
+            { name: "Home", href: "/" },
+            { name: "Experience", href: "/#experiences" },
+            {
+              name: `${info.title} at ${info.company?.name}`,
+              href: `/experience/${info.id}`,
+            },
+          ]}
+        />
 
-        <div className="z-30 flex flex-col gap-6 divide-y  mt-6">
-          <div className="block gap-3 lg:flex justify-between items-end">
-            <div className="flex lg:block justify-center">
-              <div className="size-36 p-4 rounded-lg bg-slate-100 border flex items-center justify-center">
-                <Image
-                  src={info.image}
-                  alt={`${info.company?.name || ""} company logo`}
-                  width={144}
-                  height={144}
-                  sizes="144px"
-                  priority
-                ></Image>
-              </div>
-            </div>
+        <div className="z-30 flex flex-col gap-6 mt-6">
+          <ExperienceHero experience={info} durationMonths={durationMonths} />
 
-            <div className="flex-1 justify-between flex items-center">
-              <div>
-                <h1 className="text-3xl font-bold">{info.title}</h1>
-                <p>{info.position}</p>
-              </div>
-              <div>
-                <Link
-                  href={info.company?.link || ""}
-                  className="p-2 rounded-full hover:bg-gray-200 duration-300 block"
-                  aria-label={`Visit ${info.company?.name || "company"} website`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <BuildingOffice2Icon className="size-6" aria-hidden="true" />
-                </Link>
-              </div>
+          <ExperienceOverview description={info.description} />
+
+          {info.responsibilities && info.responsibilities.length > 0 && (
+            <ExperienceResponsibilities
+              responsibilities={info.responsibilities}
+            />
+          )}
+
+          {(info.skills || info.stacks) && (
+            <div className="grid lg:grid-cols-2 grid-cols-1 gap-6">
+              {info.skills && info.skills.length > 0 && (
+                <ExperienceSkills skills={info.skills} />
+              )}
+
+              {info.stacks && info.stacks.length > 0 && (
+                <ExperienceTechnologies stacks={info.stacks} />
+              )}
             </div>
-          </div>
-          <div className="pt-3 space-y-3">
-            <h4 className="tracking-[.2em] text-sm text-gray-500 uppercase">
-              Overview
-            </h4>
-            <p className="text-justify text-sm">{info.description}</p>
-          </div>
-          <div className="pt-3 space-y-3">
-            <h4 className="tracking-[.2em] text-sm text-gray-500 uppercase">
-              Job Responsibilities
-            </h4>
-            <ul className="list-decimal text-sm ml-5">
-              {info.responsibilities?.map((res, i) => (
-                <li key={i} className="text-justify">
-                  {res}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="pt-3 grid lg:grid-cols-3 grid-cols-1 gap-2">
-            <div>
-              <h4 className="font-bold">Timeline</h4>
-              <span className="text-xs">
-                {dayjs(info.startDate).format("MMM YYYY")} -{" "}
-                {info.endDate && dayjs(info.endDate).isValid()
-                  ? dayjs(info.endDate).format("MMM YYYY")
-                  : "Present"}
-              </span>
-            </div>
-            <div>
-              <h4 className="font-bold">Skills</h4>
-              <ul className="list-decimal text-sm ml-5">
-                {info.skills?.map((res, i) => (
-                  <li key={i} className="text-justify">
-                    {res}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold">Tools</h4>
-              <ul className="list-decimal text-sm ml-5">
-                {info.stacks?.map((res, i) => (
-                  <li key={i} className="text-justify">
-                    {res}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div className="pt-3 flex flex-col gap-3">
-            <h4 className="tracking-[.2em] text-sm text-gray-500 uppercase">
-              Documentation
-            </h4>
-            {info.images?.map((img, i) => (
-              <div
-                className="w-full lg:h-[550px] md:h-[250px] h-[150px] relative"
-                key={i}
-              >
-                <Image
-                  key={i}
-                  src={img}
-                  placeholder="blur"
-                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-                  alt={`${info.title} documentation image ${i + 1}`}
-                  fill
-                  loading={i === 0 ? "eager" : "lazy"}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1200px"
-                  className="object-contain"
-                  quality={85}
-                ></Image>
-              </div>
-            ))}
-          </div>
+          )}
+
+          {info.images && info.images.length > 0 && (
+            <ExperienceDocumentation
+              images={info.images}
+              experienceTitle={info.title}
+              companyName={info.company?.name}
+            />
+          )}
         </div>
       </motion.div>
-    </>
+    </article>
   );
 }

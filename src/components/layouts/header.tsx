@@ -1,15 +1,14 @@
 "use client";
 
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
+
+import BreadCrumbs, { Crumbs } from "../ui/breadcrumbs";
 import { useRouter } from "next/navigation";
 
-import BreadCrumbs from "../ui/breadcrumbs";
-
-export default function Header() {
+export default function Header({ crumbs }: { crumbs?: Crumbs[] }) {
   const router = useRouter();
-
   return (
-    <div className="sticky top-6 z-40 w-full rounded-full shadow-md px-4 py-2 bg-white border grid grid-cols-3">
+    <div className="sticky top-6 z-40 w-full rounded-full shadow-md px-4 py-2 bg-white border flex justify-between">
       <div className="flex">
         <button
           type="button"
@@ -23,8 +22,10 @@ export default function Header() {
         </button>
       </div>
       <div className="flex items-center justify-center">
-        <BreadCrumbs />
+        {/* Breadcrumbs */}
+        <BreadCrumbs crumbs={crumbs} />
       </div>
+      <div className="flex" />
     </div>
   );
 }

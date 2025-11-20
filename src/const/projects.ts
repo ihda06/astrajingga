@@ -203,10 +203,7 @@ export const projects: Project[] = [
   {
     id: 5,
     title: "Coding Test Synapsis",
-    isActive: true,
-    company: {
-      name: "Synapsis",
-    },
+    status: "active",
     description:
       "This project was part of a coding test for a company application process. It involved creating a simple blog to evaluate my front-end engineering skills by utilizing public APIs. In this web application, users can add and delete blog posts, open blog articles, and view content along with comments from other users. Impressively, this project was completed within just one week.",
     stacks: [Stack.REACT, Stack.TAILWIND, Stack.NEXT_JS],
@@ -223,14 +220,17 @@ export const projects: Project[] = [
     },
     image: "/synapsis2.png",
     date: "2024-06-01",
+    keyTakeaways: [
+      "Learned to work with public APIs efficiently",
+      "Improved understanding of CRUD operations in React",
+      "Enhanced time management skills by completing project in one week",
+      "Gained experience in building interactive blog interfaces",
+    ],
   },
   {
     id: 6,
     title: "Coding Test Dellos",
-    isActive: true,
-    company: {
-      name: "Dellos",
-    },
+    status: "active",
     skills: [
       "Front-End Development",
       "API Integration",
@@ -250,14 +250,17 @@ export const projects: Project[] = [
     },
     image: "/dellos.png",
     date: "2024-06-01",
+    keyTakeaways: [
+      "Mastered cookie-based state management for client-side data persistence",
+      "Improved unit testing skills with Jest",
+      "Learned to integrate third-party APIs (NYT API) effectively",
+      "Enhanced understanding of e-commerce-like purchase flows",
+    ],
   },
   {
     id: 7,
     title: "Personal Web #1",
-    isActive: true,
-    company: {
-      name: "Self Employed",
-    },
+    status: "dead",
     description:
       "This was my first web portfolio project, inspired by portfolio codebayu.com. The project features a night mode and is built using Next.js and Tailwind CSS, ensuring it is fully responsive.",
     skills: [
@@ -276,14 +279,18 @@ export const projects: Project[] = [
     },
     image: "/personal-1.png",
     date: "2023-11-01",
+    lastUpdated: "2023-12-01",
+    keyTakeaways: [
+      "First experience building a complete portfolio website",
+      "Learned dark mode implementation patterns",
+      "Improved responsive design skills",
+      "Gained confidence in full-stack Next.js development",
+    ],
   },
   {
     id: 8,
     title: "Personal Web #2",
-    isActive: true,
-    company: {
-      name: "Self Employed",
-    },
+    status: "active",
     description:
       "This is my second personal portfolio website, built with Next.js and Tailwind CSS. It features a modern, responsive design with improved UI/UX compared to my first portfolio. The site showcases my projects, work experiences, and skills in a clean and professional layout.",
     stacks: [Stack.REACT, Stack.TAILWIND, Stack.NEXT_JS],
@@ -293,14 +300,18 @@ export const projects: Project[] = [
     },
     image: "/personal-2.png",
     date: "2023-11-01",
+    lastUpdated: "2024-12-01",
+    keyTakeaways: [
+      "Applied lessons learned from first portfolio to create improved version",
+      "Enhanced UI/UX design skills with modern layouts",
+      "Improved project organization and code structure",
+      "Better understanding of SEO and performance optimization",
+    ],
   },
   {
     id: 9,
     title: "Twitter Web Menfess",
-    isActive: true,
-    company: {
-      name: "Self Employed",
-    },
+    status: "dead",
     description:
       "A Twitter-style anonymous confession web application built with Next.js and Tailwind CSS. Users can post anonymous messages and interact with them in a Twitter-like interface. This project demonstrates my ability to create interactive social media-style applications with modern web technologies.",
     stacks: [Stack.REACT, Stack.TAILWIND, Stack.NEXT_JS],
@@ -310,14 +321,18 @@ export const projects: Project[] = [
     },
     image: "/personal-3.png",
     date: "2023-11-01",
+    lastUpdated: "2023-12-15",
+    keyTakeaways: [
+      "Built interactive social media-style application",
+      "Learned to implement real-time-like user interactions",
+      "Improved state management for complex UI flows",
+      "Gained experience in building anonymous posting systems",
+    ],
   },
   {
     id: 10,
     title: "Stashion Apps",
-    isActive: false,
-    company: {
-      name: "Stashion",
-    },
+    status: "inactive",
     description:
       "A fashion and styling web application developed for Stashion. This project involved creating a responsive e-commerce style interface for fashion-related content. The application features modern UI components and seamless user experience for browsing fashion items and styling content.",
     stacks: [Stack.REACT, Stack.TAILWIND, Stack.NEXT_JS],
@@ -327,5 +342,80 @@ export const projects: Project[] = [
     },
     image: "/stashion.png",
     date: "2023-06-01",
+    keyTakeaways: [
+      "Developed e-commerce style interfaces",
+      "Improved understanding of fashion/retail UI patterns",
+      "Enhanced component reusability and design system thinking",
+      "Gained experience working on client projects",
+    ],
+  },
+  {
+    id: 11,
+    title: "Object Detection YOLO",
+    status: "active",
+    description:
+      "A learning project for implementing YOLO (You Only Look Once) object detection in React.js using TensorFlow YOLOv7. This project demonstrates real-time object detection capabilities in a web browser, showcasing the integration of machine learning models with modern web technologies.",
+    stacks: [Stack.REACT, Stack.TAILWIND, Stack.NEXT_JS],
+    skills: [
+      "Machine Learning Integration",
+      "Object Detection",
+      "TensorFlow.js",
+      "YOLOv7",
+      "React Development",
+      "Web-based ML",
+      "Real-time Processing",
+    ],
+    link: {
+      githubLink: null,
+      liveLink: "https://object-detection-yolo-ihda.vercel.app/",
+    },
+    image: "/projects/yolo/yolo1.png",
+    date: "2024-04-01",
+    images: [
+      "/projects/yolo/yolo1.png",
+      "/projects/yolo/yolo2.png",
+      "/projects/yolo/yolo3.png",
+    ],
+    keyTakeaways: [
+      "Learned to integrate TensorFlow.js with React applications",
+      "Gained experience implementing YOLOv7 model in browser environment",
+      "Improved understanding of object detection algorithms",
+      "Enhanced skills in machine learning web applications",
+    ],
+  },
+  {
+    id: 12,
+    title: "ParaBot",
+    status: "active",
+    description:
+      "A free developer tools collection designed to help developers analyze, parse, and optimize their development workflow. The platform features multiple tools including Build Parser & Analyzer for Next.js builds, Text Diff Tool for comparing code changes, and JSON to TypeScript Converter. All tools run entirely in the browser with 100% privacy—no data is sent to servers.",
+    stacks: [Stack.REACT, Stack.TAILWIND, Stack.NEXT_JS],
+    skills: [
+      "Developer Tools",
+      "Build Analysis",
+      "Text Processing",
+      "TypeScript Generation",
+      "Privacy-First Development",
+      "Browser-Based Processing",
+      "Tool Development",
+    ],
+    link: {
+      githubLink: null,
+      liveLink: "https://parabot.vercel.app/",
+    },
+    image: "/projects/parabot/parabot1.png",
+    images: [
+      "/projects/parabot/parabot1.png",
+      "/projects/parabot/parabot2.png",
+      "/projects/parabot/parabot3.png",
+      "/projects/parabot/parabot4.png",
+    ],
+    date: "2024-12-19",
+    keyTakeaways: [
+      "Built a comprehensive developer tools platform",
+      "Implemented privacy-first architecture with client-side processing",
+      "Created multiple specialized tools for developer workflows",
+      "Enhanced understanding of build analysis and code parsing",
+    ],
   },
 ];

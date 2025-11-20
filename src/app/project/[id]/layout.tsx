@@ -37,5 +37,5 @@ export default function ProjectLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <div className="px-4 lg:px-24 space-y-6">{children}</div>;
 }
