@@ -201,6 +201,75 @@ export const experiences: Work[] = [
 
 export const projects: Project[] = [
   {
+    id: 11,
+    title: "Object Detection YOLO",
+    status: "active",
+    description:
+      "A learning project for implementing YOLO (You Only Look Once) object detection in React.js using TensorFlow YOLOv7. This project demonstrates real-time object detection capabilities in a web browser, showcasing the integration of machine learning models with modern web technologies.",
+    stacks: [Stack.REACT, Stack.TAILWIND, Stack.NEXT_JS],
+    skills: [
+      "Machine Learning Integration",
+      "Object Detection",
+      "TensorFlow.js",
+      "YOLOv7",
+      "React Development",
+      "Web-based ML",
+      "Real-time Processing",
+    ],
+    link: {
+      githubLink: null,
+      liveLink: "https://object-detection-yolo-ihda.vercel.app/",
+    },
+    image: "/projects/yolo/yolo1.png",
+    date: "2024-04-01",
+    images: [
+      "/projects/yolo/yolo1.png",
+      "/projects/yolo/yolo2.png",
+      "/projects/yolo/yolo3.png",
+    ],
+    keyTakeaways: [
+      "Learned to integrate TensorFlow.js with React applications",
+      "Gained experience implementing YOLOv7 model in browser environment",
+      "Improved understanding of object detection algorithms",
+      "Enhanced skills in machine learning web applications",
+    ],
+  },
+  {
+    id: 12,
+    title: "ParaBot",
+    status: "active",
+    description:
+      "A free developer tools collection designed to help developers analyze, parse, and optimize their development workflow. The platform features multiple tools including Build Parser & Analyzer for Next.js builds, Text Diff Tool for comparing code changes, and JSON to TypeScript Converter. All tools run entirely in the browser with 100% privacy—no data is sent to servers.",
+    stacks: [Stack.REACT, Stack.TAILWIND, Stack.NEXT_JS],
+    skills: [
+      "Developer Tools",
+      "Build Analysis",
+      "Text Processing",
+      "TypeScript Generation",
+      "Privacy-First Development",
+      "Browser-Based Processing",
+      "Tool Development",
+    ],
+    link: {
+      githubLink: null,
+      liveLink: "https://parabot.vercel.app/",
+    },
+    image: "/projects/parabot/parabot1.png",
+    images: [
+      "/projects/parabot/parabot1.png",
+      "/projects/parabot/parabot2.png",
+      "/projects/parabot/parabot3.png",
+      "/projects/parabot/parabot4.png",
+    ],
+    date: "2024-12-19",
+    keyTakeaways: [
+      "Built a comprehensive developer tools platform",
+      "Implemented privacy-first architecture with client-side processing",
+      "Created multiple specialized tools for developer workflows",
+      "Enhanced understanding of build analysis and code parsing",
+    ],
+  },
+  {
     id: 5,
     title: "Coding Test Synapsis",
     status: "active",
@@ -347,75 +416,6 @@ export const projects: Project[] = [
       "Improved understanding of fashion/retail UI patterns",
       "Enhanced component reusability and design system thinking",
       "Gained experience working on client projects",
-    ],
-  },
-  {
-    id: 11,
-    title: "Object Detection YOLO",
-    status: "active",
-    description:
-      "A learning project for implementing YOLO (You Only Look Once) object detection in React.js using TensorFlow YOLOv7. This project demonstrates real-time object detection capabilities in a web browser, showcasing the integration of machine learning models with modern web technologies.",
-    stacks: [Stack.REACT, Stack.TAILWIND, Stack.NEXT_JS],
-    skills: [
-      "Machine Learning Integration",
-      "Object Detection",
-      "TensorFlow.js",
-      "YOLOv7",
-      "React Development",
-      "Web-based ML",
-      "Real-time Processing",
-    ],
-    link: {
-      githubLink: null,
-      liveLink: "https://object-detection-yolo-ihda.vercel.app/",
-    },
-    image: "/projects/yolo/yolo1.png",
-    date: "2024-04-01",
-    images: [
-      "/projects/yolo/yolo1.png",
-      "/projects/yolo/yolo2.png",
-      "/projects/yolo/yolo3.png",
-    ],
-    keyTakeaways: [
-      "Learned to integrate TensorFlow.js with React applications",
-      "Gained experience implementing YOLOv7 model in browser environment",
-      "Improved understanding of object detection algorithms",
-      "Enhanced skills in machine learning web applications",
-    ],
-  },
-  {
-    id: 12,
-    title: "ParaBot",
-    status: "active",
-    description:
-      "A free developer tools collection designed to help developers analyze, parse, and optimize their development workflow. The platform features multiple tools including Build Parser & Analyzer for Next.js builds, Text Diff Tool for comparing code changes, and JSON to TypeScript Converter. All tools run entirely in the browser with 100% privacy—no data is sent to servers.",
-    stacks: [Stack.REACT, Stack.TAILWIND, Stack.NEXT_JS],
-    skills: [
-      "Developer Tools",
-      "Build Analysis",
-      "Text Processing",
-      "TypeScript Generation",
-      "Privacy-First Development",
-      "Browser-Based Processing",
-      "Tool Development",
-    ],
-    link: {
-      githubLink: null,
-      liveLink: "https://parabot.vercel.app/",
-    },
-    image: "/projects/parabot/parabot1.png",
-    images: [
-      "/projects/parabot/parabot1.png",
-      "/projects/parabot/parabot2.png",
-      "/projects/parabot/parabot3.png",
-      "/projects/parabot/parabot4.png",
-    ],
-    date: "2024-12-19",
-    keyTakeaways: [
-      "Built a comprehensive developer tools platform",
-      "Implemented privacy-first architecture with client-side processing",
-      "Created multiple specialized tools for developer workflows",
-      "Enhanced understanding of build analysis and code parsing",
     ],
   },
 ];

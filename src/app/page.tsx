@@ -29,8 +29,8 @@ export default function Home() {
       />
       <HomeLayout>
         <HeroSection />
-        <ProjectExperiencesSection />
         <ExperiencesSection />
+        <ProjectExperiencesSection />
       </HomeLayout>
     </>
   );

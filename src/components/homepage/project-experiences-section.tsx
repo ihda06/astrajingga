@@ -25,7 +25,7 @@ export default function ProjectExperiencesSection() {
             experience
           </p>
         </div>
-        <div className="grid gap-3 md:gap-6 lg:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+        <div className="grid gap-3 md:gap-6 lg:gap-8 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 items-stretch">
           {projects.map((work, idx) => {
             return <ProjectCard key={work.title + idx} {...work} />;
           })}

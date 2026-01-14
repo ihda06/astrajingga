@@ -26,69 +26,91 @@ export default function ProjectCard({ ...props }: Project) {
 
   return (
     <>
-      {/* Mobile compact horizontal card */}
+      {/* Mobile vertical grid card */}
       <Link
         href={`/project/${props.id}`}
-        className="md:hidden block"
+        className="md:hidden block h-full"
         aria-label={`View details for ${props.title}`}
       >
-        <Card className="group bg-white/80 backdrop-blur-sm overflow-hidden hover:shadow-md hover:bg-white transition-all duration-200 border-border/50">
-          <div className="flex items-center gap-3 p-3">
-            {/* Compact thumbnail */}
-            <div className="relative w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-muted/50">
-              <Image
-                src={displayImage}
-                alt={props.title}
-                fill
-                loading="lazy"
-                sizes="80px"
-                placeholder="blur"
-                blurDataURL={blurDataURL}
-                className="object-cover transition-transform duration-200 group-hover:scale-105"
-                quality={75}
-              />
-              {props.status !== "active" && (
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                  <span className="text-[10px] font-medium text-white uppercase tracking-wide">
-                    {props.status === "dead" ? "Dead" : "Inactive"}
-                  </span>
-                </div>
+        <Card className="group bg-white h-full flex flex-col overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border/40">
+          {/* Attractive image section */}
+          <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-muted/30 to-muted/60">
+            <Image
+              src={displayImage}
+              alt={props.title}
+              fill
+              loading="lazy"
+              sizes="50vw"
+              placeholder="blur"
+              blurDataURL={blurDataURL}
+              className="object-cover transition-transform duration-300 group-hover:scale-110"
+              quality={80}
+            />
+            {/* Gradient overlay for depth */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+            {/* Status badge */}
+            {props.status !== "active" && (
+              <div className="absolute top-2 right-2">
+                <Badge
+                  variant="outline"
+                  className={`text-[10px] backdrop-blur-sm ${
+                    props.status === "dead"
+                      ? "text-orange-600 bg-orange-500/20 border-orange-400/50"
+                      : "text-gray-600 bg-gray-500/20 border-gray-400/50"
+                  }`}
+                >
+                  {props.status === "dead" ? "Dead" : "Inactive"}
+                </Badge>
+              </div>
+            )}
+
+            {/* Active indicator dot */}
+            {props.status === "active" && (
+              <div className="absolute top-2 left-2">
+                <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-lg shadow-emerald-500/50 animate-pulse" />
+              </div>
+            )}
+          </div>
+
+          {/* Content section */}
+          <div className="flex-1 flex flex-col p-3 gap-2">
+            {/* Title */}
+            <h3 className="font-semibold text-sm leading-snug line-clamp-2 group-hover:text-primary transition-colors">
+              {props.title}
+            </h3>
+
+            {/* Date and stacks */}
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <span className="text-[10px] text-muted-foreground font-medium">
+                {dayjs(props.date).format("MMM YYYY")}
+              </span>
+              {limitedStacks.length > 0 && (
+                <>
+                  <span className="text-muted-foreground/40">•</span>
+                  {limitedStacks.slice(0, 1).map((stack) => (
+                    <Badge
+                      key={stack}
+                      variant="secondary"
+                      className="text-[9px] py-0 px-1.5 h-4 font-medium bg-primary/10 text-primary border-0"
+                    >
+                      {stack}
+                    </Badge>
+                  ))}
+                </>
               )}
             </div>
 
-            {/* Content */}
-            <div className="flex-1 min-w-0 py-0.5">
-              <div className="flex items-start justify-between gap-2 mb-1">
-                <h3 className="font-semibold text-sm leading-tight line-clamp-1">
-                  {props.title}
-                </h3>
-              </div>
-              <div className="flex items-center gap-1.5 mb-1.5">
-                <span className="text-[11px] text-muted-foreground">
-                  {dayjs(props.date).format("MMM YYYY")}
-                </span>
-                {limitedStacks.length > 0 && (
-                  <>
-                    <span className="text-muted-foreground/50">•</span>
-                    {limitedStacks.map((stack) => (
-                      <Badge
-                        key={stack}
-                        variant="secondary"
-                        className="text-[10px] py-0 px-1.5 h-4 font-normal"
-                      >
-                        {stack}
-                      </Badge>
-                    ))}
-                  </>
-                )}
-              </div>
-              <p className="text-xs text-muted-foreground line-clamp-1">
-                {props.description}
-              </p>
-            </div>
+            {/* Description */}
+            <p className="text-[11px] text-muted-foreground line-clamp-2 leading-relaxed">
+              {props.description}
+            </p>
 
-            {/* Arrow indicator */}
-            <FaArrowRight className="h-3 w-3 text-muted-foreground/50 flex-shrink-0 group-hover:text-foreground transition-colors" />
+            {/* View details hint */}
+            <div className="mt-auto pt-2 flex items-center gap-1 text-[10px] font-medium text-primary/70 group-hover:text-primary transition-colors">
+              <span>View details</span>
+              <FaArrowRight className="h-2.5 w-2.5 group-hover:translate-x-0.5 transition-transform" />
+            </div>
           </div>
         </Card>
       </Link>
