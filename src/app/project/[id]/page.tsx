@@ -22,6 +22,8 @@ import { dayjs } from "@/utils/format";
 import ProjectStatusBadge from "@/components/project/project-status-badge";
 import ProjectGallery from "@/components/project/project-gallery";
 import Header from "@/components/layouts/header";
+import Show from "@/components/utils/Show";
+import { useMediaQuery } from "usehooks-ts";
 
 export default function DetailProjectsPage(props: {
   params: Promise<{ id: string }>;
@@ -30,6 +32,7 @@ export default function DetailProjectsPage(props: {
   const { id } = params;
   const router = useRouter();
   const info = projects.find((exp) => exp.id === Number(id));
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
     if (info) {
@@ -85,13 +88,15 @@ export default function DetailProjectsPage(props: {
           padding: "12px 6px 12px 12px",
         }}
       >
-        <Header
-          crumbs={[
-            { name: "Home", href: "/" },
-            { name: "Project", href: "/#projects" },
-            { name: info.title, href: `/project/${info.id}` },
-          ]}
-        />
+        <Show when={!isMobile}>
+          <Header
+            crumbs={[
+              { name: "Home", href: "/" },
+              { name: "Project", href: "/#projects" },
+              { name: info.title, href: `/project/${info.id}` },
+            ]}
+          />
+        </Show>
 
         <div className="z-30 flex flex-col gap-6 mt-6">
           {/* Hero Section */}
