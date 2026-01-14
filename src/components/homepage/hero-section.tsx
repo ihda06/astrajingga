@@ -5,7 +5,7 @@ import { MapPinIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 import { SkillList } from "@/const/common";
-import SocialSection from "@/components/homepage/social-section";
+
 import { cn } from "@/utils/format";
 import Link from "next/link";
 import AnimatedBackground from "./animated-background";
@@ -64,14 +64,14 @@ export default function HeroSection() {
     <motion.section
       ref={sectionRef}
       style={{ opacity, y }}
-      className="relative min-h-screen w-full text-center flex flex-col gap-6 lg:gap-10 items-center justify-center overflow-hidden py-8 lg:py-0"
+      className="relative min-h-screen w-full text-center flex flex-col gap-4 lg:gap-6 items-center justify-center overflow-hidden py-6 lg:pt-24 lg:pb-12"
       aria-label="Introduction"
     >
       {/* Animated Background */}
       <AnimatedBackground />
 
       {/* Content Container */}
-      <div className="relative lg:px-24 z-20 w-full flex flex-col gap-6 lg:gap-10 items-center justify-center px-4">
+      <div className="relative lg:px-20 z-20 w-full flex flex-col gap-4 lg:gap-6 items-center justify-center px-4">
         {/* Profile Image - Now visible on mobile too */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -93,49 +93,67 @@ export default function HeroSection() {
             }}
           />
           {/* Profile Image */}
-          <div className="relative rounded-full p-1 bg-gradient-to-r from-emerald-300 via-sky-300 to-amber-300">
-            <div className="rounded-full bg-white p-1">
+          <div className="relative rounded-full p-0.5 bg-gradient-to-r from-emerald-300 via-sky-300 to-amber-300">
+            <div className="rounded-full bg-white p-0.5">
               <Image
                 src="/logo.png"
-                width={120}
-                height={120}
+                width={80}
+                height={80}
                 alt="Ihda Anwari - Frontend Engineer"
                 priority
-                sizes="120px"
-                className="rounded-full lg:w-[150px] lg:h-[150px] w-[100px] h-[100px]"
+                sizes="80px"
+                className="rounded-full lg:w-[100px] lg:h-[100px] w-[80px] h-[80px]"
               />
             </div>
           </div>
         </motion.div>
-
-        {/* Status Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex items-center gap-2"
-        >
+        <div className="flex gap-2">
+          {/* Status Badge */}
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="bg-gradient-to-r from-emerald-600 to-emerald-700 rounded-full px-4 py-2 text-xs uppercase font-semibold flex items-center gap-2 shadow-lg shadow-emerald-600/30"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex items-center gap-2"
           >
-            <motion.span
-              animate={{ scale: [1, 1.3, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="bg-emerald-300 rounded-full size-2.5 inline-block"
-            />
-            <span className="text-white">Open to Work</span>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="bg-gradient-to-r from-emerald-600 to-emerald-700 rounded-full px-3 py-1.5 text-[10px] uppercase font-semibold flex items-center gap-1.5 shadow-md shadow-emerald-600/30"
+            >
+              <motion.span
+                animate={{ scale: [1, 1.3, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className="bg-emerald-300 rounded-full size-2 inline-block"
+              />
+              <span className="text-white">Open to Work</span>
+            </motion.div>
           </motion.div>
-        </motion.div>
+          {/* Location & Role Badges */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.9 }}
+            className="flex gap-2 text-xs items-center justify-center flex-wrap"
+          >
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-gray-50/80 border border-gray-200/50 shadow-sm backdrop-blur-sm"
+            >
+              <MapPinIcon className="size-3.5 text-gray-500" />
+              <span className="font-medium text-gray-600">
+                Bandung, Indonesia
+              </span>
+            </motion.div>
+          </motion.div>
+        </div>
 
         {/* Value-First Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="max-w-3xl"
+          className="max-w-2xl"
         >
-          <h1 className="text-2xl sm:text-3xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+          <h1 className="text-xl sm:text-2xl lg:text-4xl font-extrabold tracking-tight leading-tight">
             <span className="bg-gradient-to-r from-gray-800 via-emerald-600 to-sky-600 bg-clip-text text-transparent">
               Building Digital Experiences
             </span>
@@ -148,10 +166,38 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-4 text-base lg:text-xl text-gray-600 font-medium"
+            className="mt-2 text-sm lg:text-base text-gray-600 font-medium"
           >
             React & Next.js Specialist • 3+ Years Experience
           </motion.p>
+        </motion.div>
+
+        {/* Skills Marquee */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 1 }}
+          className="w-full max-w-3xl overflow-hidden"
+        >
+          <Marquee
+            direction="left"
+            speed={25}
+            className="[&_.rfm-child]:mx-1.5"
+            autoFill
+          >
+            {SkillList.map((item, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ scale: 1.1, y: -2 }}
+                className="px-2 py-0.5 rounded-full bg-white/80 backdrop-blur-sm text-xs gap-1.5 flex items-center shadow-sm border border-gray-100/60 hover:border-emerald-200/80 hover:shadow-md transition-all duration-300 cursor-pointer"
+              >
+                <span className={cn(item.color || "text-gray-600")}>
+                  <item.icon size={12} />
+                </span>
+                <span className="font-medium text-gray-600">{item.title}</span>
+              </motion.div>
+            ))}
+          </Marquee>
         </motion.div>
 
         {/* Punchy Bio */}
@@ -159,7 +205,7 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.6 }}
-          className="text-sm lg:text-base text-gray-600 leading-relaxed max-w-2xl px-4"
+          className="text-xs lg:text-sm text-gray-600 leading-relaxed max-w-xl px-4"
         >
           I craft high-performance web interfaces that convert visitors into
           customers. From startups to enterprises, I bring your vision to life
@@ -171,49 +217,49 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="flex flex-wrap justify-center gap-4 lg:gap-8"
+          className="flex flex-wrap justify-center gap-3 lg:gap-5"
         >
           <motion.div
-            whileHover={{ scale: 1.05, y: -3 }}
-            className="flex flex-col items-center gap-1 px-4 lg:px-6 py-3 lg:py-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-emerald-100 shadow-lg shadow-emerald-100/50"
+            whileHover={{ scale: 1.05, y: -2 }}
+            className="flex flex-col items-center gap-0.5 px-3 lg:px-4 py-2 lg:py-3 rounded-xl bg-white/80 backdrop-blur-sm border border-emerald-100 shadow-md shadow-emerald-100/50"
           >
-            <div className="flex items-center gap-2 text-emerald-600">
-              <Briefcase className="w-4 h-4 lg:w-5 lg:h-5" />
-              <span className="text-xl lg:text-3xl font-bold">
+            <div className="flex items-center gap-1.5 text-emerald-600">
+              <Briefcase className="w-3 h-3 lg:w-4 lg:h-4" />
+              <span className="text-lg lg:text-2xl font-bold">
                 <AnimatedCounter value={3} suffix="+" />
               </span>
             </div>
-            <span className="text-xs lg:text-sm text-gray-600 font-medium">
+            <span className="text-[10px] lg:text-xs text-gray-600 font-medium">
               Years Experience
             </span>
           </motion.div>
 
           <motion.div
-            whileHover={{ scale: 1.05, y: -3 }}
-            className="flex flex-col items-center gap-1 px-4 lg:px-6 py-3 lg:py-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-sky-100 shadow-lg shadow-sky-100/50"
+            whileHover={{ scale: 1.05, y: -2 }}
+            className="flex flex-col items-center gap-0.5 px-3 lg:px-4 py-2 lg:py-3 rounded-xl bg-white/80 backdrop-blur-sm border border-sky-100 shadow-md shadow-sky-100/50"
           >
-            <div className="flex items-center gap-2 text-sky-600">
-              <FolderGit2 className="w-4 h-4 lg:w-5 lg:h-5" />
-              <span className="text-xl lg:text-3xl font-bold">
+            <div className="flex items-center gap-1.5 text-sky-600">
+              <FolderGit2 className="w-3 h-3 lg:w-4 lg:h-4" />
+              <span className="text-lg lg:text-2xl font-bold">
                 <AnimatedCounter value={10} suffix="+" />
               </span>
             </div>
-            <span className="text-xs lg:text-sm text-gray-600 font-medium">
+            <span className="text-[10px] lg:text-xs text-gray-600 font-medium">
               Projects Delivered
             </span>
           </motion.div>
 
           <motion.div
-            whileHover={{ scale: 1.05, y: -3 }}
-            className="flex flex-col items-center gap-1 px-4 lg:px-6 py-3 lg:py-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-amber-100 shadow-lg shadow-amber-100/50"
+            whileHover={{ scale: 1.05, y: -2 }}
+            className="flex flex-col items-center gap-0.5 px-3 lg:px-4 py-2 lg:py-3 rounded-xl bg-white/80 backdrop-blur-sm border border-amber-100 shadow-md shadow-amber-100/50"
           >
-            <div className="flex items-center gap-2 text-amber-600">
-              <Zap className="w-4 h-4 lg:w-5 lg:h-5" />
-              <span className="text-xl lg:text-3xl font-bold">
+            <div className="flex items-center gap-1.5 text-amber-600">
+              <Zap className="w-3 h-3 lg:w-4 lg:h-4" />
+              <span className="text-lg lg:text-2xl font-bold">
                 <AnimatedCounter value={100} suffix="%" />
               </span>
             </div>
-            <span className="text-xs lg:text-sm text-gray-600 font-medium">
+            <span className="text-[10px] lg:text-xs text-gray-600 font-medium">
               On-time Delivery
             </span>
           </motion.div>
@@ -224,7 +270,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-3 lg:gap-4 w-full max-w-md px-4"
+          className="flex flex-col sm:flex-row gap-2 lg:gap-3 w-full max-w-md px-4"
         >
           {/* Primary CTA */}
           <motion.div
@@ -233,10 +279,10 @@ export default function HeroSection() {
             className="flex-1"
           >
             <Link
-              href="mailto:ihdaanwari@gmail.com"
-              className="flex items-center justify-center gap-2 w-full px-6 py-3.5 lg:py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-full font-semibold shadow-lg shadow-emerald-600/30 hover:shadow-xl hover:shadow-emerald-600/40 transition-all duration-300"
+              href="mailto:ihdaanwari5@gmail.com"
+              className="flex items-center justify-center gap-1.5 w-full px-4 py-2.5 lg:py-3 text-sm bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-full font-semibold shadow-md shadow-emerald-600/30 hover:shadow-lg hover:shadow-emerald-600/40 transition-all duration-300"
             >
-              <Mail className="w-4 h-4" />
+              <Mail className="w-3.5 h-3.5" />
               <span>Let&apos;s Work Together</span>
             </Link>
           </motion.div>
@@ -249,67 +295,12 @@ export default function HeroSection() {
           >
             <Link
               href="#work-experiences"
-              className="flex items-center justify-center gap-2 w-full px-6 py-3.5 lg:py-4 bg-white/80 backdrop-blur-sm border-2 border-emerald-200 text-emerald-700 rounded-full font-semibold hover:border-emerald-400 hover:bg-emerald-50/50 transition-all duration-300"
+              className="flex items-center justify-center gap-1.5 w-full px-4 py-2.5 lg:py-3 text-sm bg-white/80 backdrop-blur-sm border-2 border-emerald-200 text-emerald-700 rounded-full font-semibold hover:border-emerald-400 hover:bg-emerald-50/50 transition-all duration-300"
             >
               <span>View My Work</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </motion.div>
-        </motion.div>
-
-        {/* Location & Role Badges */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.9 }}
-          className="flex gap-2 text-xs items-center justify-center flex-wrap"
-        >
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-gray-50/80 border border-gray-200/50 shadow-sm backdrop-blur-sm"
-          >
-            <MapPinIcon className="size-3.5 text-gray-500" />
-            <span className="font-medium text-gray-600">
-              Bandung, Indonesia
-            </span>
-          </motion.div>
-        </motion.div>
-
-        {/* Skills Marquee */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1 }}
-          className="w-full max-w-4xl overflow-hidden"
-        >
-          <Marquee
-            direction="left"
-            speed={25}
-            className="[&_.rfm-child]:mx-2 py-2"
-            autoFill
-          >
-            {SkillList.map((item, idx) => (
-              <motion.div
-                key={idx}
-                whileHover={{ scale: 1.1, y: -3 }}
-                className="px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm text-sm gap-2 flex items-center shadow-sm border border-gray-100/60 hover:border-emerald-200/80 hover:shadow-md transition-all duration-300 cursor-pointer"
-              >
-                <span className={cn(item.color || "text-gray-600")}>
-                  <item.icon />
-                </span>
-                <span className="font-medium text-gray-600">{item.title}</span>
-              </motion.div>
-            ))}
-          </Marquee>
-        </motion.div>
-
-        {/* Social Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1.1 }}
-        >
-          <SocialSection />
         </motion.div>
       </div>
     </motion.section>
