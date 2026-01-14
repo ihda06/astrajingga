@@ -5,8 +5,12 @@ import WorkCard from "@/components/homepage/work-card";
 
 export default function ExperiencesSection() {
   return (
-    <section className="py-5 relative" aria-label="Work Experiences">
-      <div className="sticky md:top-14 top-20 flex flex-col gap-2 items-center justify-center z-0 bg-transparent pb-4">
+    <section
+      id="work-experiences"
+      className="py-5 relative"
+      aria-label="Work Experiences"
+    >
+      <div className="sticky top-24 md:top-14 flex flex-col gap-2 items-center justify-center z-0 bg-transparent pb-4">
         <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-2">
           Work Experiences
         </h2>

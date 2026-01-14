@@ -1,6 +1,6 @@
 "use client";
 
-import { RefObject, useRef } from "react";
+import { RefObject, useRef, useEffect, useState } from "react";
 import { MapPinIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
@@ -8,11 +8,47 @@ import { SkillList } from "@/const/common";
 import SocialSection from "@/components/homepage/social-section";
 import { cn } from "@/utils/format";
 import Link from "next/link";
-import TypingText from "@/components/ui/shadcn-io/typing-text";
 import AnimatedBackground from "./animated-background";
 
 import { motion, useScroll, useTransform } from "motion/react";
-import { Mountain, Compass, TreePine, Sun } from "lucide-react";
+import { Briefcase, FolderGit2, Zap, ArrowRight, Mail } from "lucide-react";
+
+// Animated counter component
+function AnimatedCounter({
+  value,
+  suffix = "",
+}: {
+  value: number;
+  suffix?: string;
+}) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const duration = 2000;
+    const steps = 60;
+    const increment = value / steps;
+    let current = 0;
+
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= value) {
+        setCount(value);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(current));
+      }
+    }, duration / steps);
+
+    return () => clearInterval(timer);
+  }, [value]);
+
+  return (
+    <span>
+      {count}
+      {suffix}
+    </span>
+  );
+}
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -28,275 +64,223 @@ export default function HeroSection() {
     <motion.section
       ref={sectionRef}
       style={{ opacity, y }}
-      className="relative h-screen w-full text-center flex flex-col gap-12 items-center justify-center overflow-hidden"
+      className="relative min-h-screen w-full text-center flex flex-col gap-6 lg:gap-10 items-center justify-center overflow-hidden py-8 lg:py-0"
       aria-label="Introduction"
     >
       {/* Animated Background */}
       <AnimatedBackground />
 
       {/* Content Container */}
-      <div className="relative lg:px-24 z-20 w-full flex flex-col gap-12 items-center justify-center px-4">
-        {/* Top Badges Row */}
+      <div className="relative lg:px-24 z-20 w-full flex flex-col gap-6 lg:gap-10 items-center justify-center px-4">
+        {/* Profile Image - Now visible on mobile too */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex lg:flex-row flex-col w-full justify-between items-center gap-4"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="relative"
         >
-          <div className="flex gap-3 text-xs items-center justify-center flex-wrap">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-emerald-50/60 border border-emerald-200/40 shadow-sm backdrop-blur-sm"
-            >
-              <MapPinIcon className="size-4 text-emerald-700" />
-              <span className="font-medium text-emerald-800">Bandung</span>
-            </motion.div>
-            <span className="text-emerald-300">•</span>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-sky-50/60 border border-sky-200/40 shadow-sm backdrop-blur-sm"
-            >
-              <span className="font-medium text-sky-800">
-                Software Engineer
-              </span>
-            </motion.div>
-            <span className="text-emerald-300">•</span>
-            <motion.div
-              className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-amber-50/60 border border-amber-200/40 shadow-sm backdrop-blur-sm"
-              whileHover={{ scale: 1.05 }}
-            >
-              <span className="font-medium text-amber-800">
-                Bachelor of Economics
-              </span>
-            </motion.div>
-          </div>
+          {/* Glowing Ring */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-400 via-sky-400 to-amber-400 blur-xl opacity-50"
+            animate={{
+              scale: [1, 1.15, 1],
+              opacity: [0.5, 0.7, 0.5],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+          {/* Profile Image */}
+          <div className="relative rounded-full p-1 bg-gradient-to-r from-emerald-300 via-sky-300 to-amber-300">
+            <div className="rounded-full bg-white p-1">
+              <Image
+                src="/logo.png"
+                width={120}
+                height={120}
+                alt="Ihda Anwari - Frontend Engineer"
+                priority
+                sizes="120px"
+                className="rounded-full lg:w-[150px] lg:h-[150px] w-[100px] h-[100px]"
+              />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Status Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex items-center gap-2"
+        >
+          <motion.div
             whileHover={{ scale: 1.05 }}
-            className="bg-linear-to-r from-emerald-700 to-emerald-800 lg:flex hidden rounded-full px-4 py-2 text-xs uppercase font-semibold items-center justify-center gap-2 shadow-lg shadow-emerald-800/30"
+            className="bg-gradient-to-r from-emerald-600 to-emerald-700 rounded-full px-4 py-2 text-xs uppercase font-semibold flex items-center gap-2 shadow-lg shadow-emerald-600/30"
           >
             <motion.span
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="bg-emerald-300 rounded-full size-3 inline-block"
+              animate={{ scale: [1, 1.3, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="bg-emerald-300 rounded-full size-2.5 inline-block"
             />
             <span className="text-white">Open to Work</span>
           </motion.div>
         </motion.div>
 
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-[2fr_1fr] grid-cols-1 gap-8 w-full max-w-7xl">
-          {/* Left Column - Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-center lg:text-start flex flex-col lg:justify-center lg:items-start justify-start items-center gap-6"
+        {/* Value-First Headline */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="max-w-3xl"
+        >
+          <h1 className="text-2xl sm:text-3xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+            <span className="bg-gradient-to-r from-gray-800 via-emerald-600 to-sky-600 bg-clip-text text-transparent">
+              Building Digital Experiences
+            </span>
+            <br />
+            <span className="text-gray-800">That Drive Business Results</span>
+          </h1>
+
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mt-4 text-base lg:text-xl text-gray-600 font-medium"
           >
-            <h1 className="tracking-widest font-extrabold lg:text-5xl text-3xl relative">
-              {/* Mountain Icon */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="absolute -left-8 -top-2 hidden lg:block"
-              >
-                <Mountain
-                  className="w-6 h-6 text-emerald-500/40"
-                  strokeWidth={1.5}
-                />
-              </motion.div>
+            React & Next.js Specialist • 3+ Years Experience
+          </motion.p>
+        </motion.div>
 
-              {/* Sun Icon */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="absolute -right-6 -top-1 hidden lg:block"
-              >
-                <Sun className="w-5 h-5 text-amber-500/40" strokeWidth={1.5} />
-              </motion.div>
+        {/* Punchy Bio */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.6 }}
+          className="text-sm lg:text-base text-gray-600 leading-relaxed max-w-2xl px-4"
+        >
+          I craft high-performance web interfaces that convert visitors into
+          customers. From startups to enterprises, I bring your vision to life
+          with clean code and pixel-perfect designs.
+        </motion.p>
 
-              <span className="text-gray-800">Hello there! I&apos;m </span>
-              <span className="bg-linear-to-r from-gray-800 via-emerald-600 to-gray-800 bg-clip-text text-transparent">
-                Ihda Anwari
+        {/* Stats Banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="flex flex-wrap justify-center gap-4 lg:gap-8"
+        >
+          <motion.div
+            whileHover={{ scale: 1.05, y: -3 }}
+            className="flex flex-col items-center gap-1 px-4 lg:px-6 py-3 lg:py-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-emerald-100 shadow-lg shadow-emerald-100/50"
+          >
+            <div className="flex items-center gap-2 text-emerald-600">
+              <Briefcase className="w-4 h-4 lg:w-5 lg:h-5" />
+              <span className="text-xl lg:text-3xl font-bold">
+                <AnimatedCounter value={3} suffix="+" />
               </span>
-            </h1>
-
-            <div className="lg:text-2xl text-xl font-semibold min-h-8">
-              <TypingText
-                text={[
-                  "3-Year Frontend Engineer",
-                  "React & Next.js Expert",
-                  "Building High-Performance Web Interfaces with AI Integration",
-                ]}
-                textColors={[
-                  "text-emerald-700",
-                  "text-sky-700",
-                  "text-amber-700",
-                ]}
-                className="font-bold"
-              />
             </div>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.6 }}
-              className={cn(
-                "text-sm lg:text-base text-gray-600 leading-relaxed max-w-2xl"
-              )}
-            >
-              Started from Bootcamp{" "}
-              <Link
-                href="https://goto-impact.org/generasi-gigih/"
-                className="font-semibold text-emerald-700 hover:text-emerald-800 underline decoration-1 decoration-emerald-300 hover:decoration-emerald-500 transition-all duration-300 relative group"
-              >
-                <span className="relative">
-                  Generasi Gigih
-                  <motion.span
-                    className="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald-600"
-                    whileHover={{ width: "100%" }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </span>
-              </Link>
-              &nbsp;by GoTo Foundation in Frontend Developer Track, I am a
-              Frontend Developer enthusiast with a Digital Business background
-              at{" "}
-              <Link
-                href="https://www.unpad.ac.id/"
-                className="font-semibold text-amber-700 hover:text-amber-800 underline decoration-1 decoration-amber-300 hover:decoration-amber-500 transition-all duration-300 relative group"
-              >
-                <span className="relative">
-                  Padjadjaran University.
-                  <motion.span
-                    className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-600"
-                    whileHover={{ width: "100%" }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </span>
-              </Link>
-              &nbsp;Passionate about merging technology with business
-              objectives, I specialize in crafting frontend solutions that drive
-              user engagement and align with strategic goals. When I&apos;m not
-              coding, you&apos;ll find me exploring mountain trails and
-              connecting with nature.
-            </motion.p>
+            <span className="text-xs lg:text-sm text-gray-600 font-medium">
+              Years Experience
+            </span>
           </motion.div>
 
-          {/* Right Column - Profile Image */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="hidden lg:flex flex-col items-end justify-center gap-4 relative"
+            whileHover={{ scale: 1.05, y: -3 }}
+            className="flex flex-col items-center gap-1 px-4 lg:px-6 py-3 lg:py-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-sky-100 shadow-lg shadow-sky-100/50"
           >
-            {/* Compass Icon - Top Right */}
-            <motion.div
-              initial={{ opacity: 0, rotate: -180 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="absolute -top-8 -right-4"
-            >
-              <motion.div
-                animate={{
-                  rotate: [0, 360],
-                  y: [0, -10, 0],
-                }}
-                transition={{
-                  rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-                  y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                }}
-              >
-                <Compass
-                  className="w-8 h-8 text-sky-500/50"
-                  strokeWidth={1.5}
-                />
-              </motion.div>
-            </motion.div>
-
-            {/* Tree Icon - Bottom Right */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="absolute -bottom-6 right-2"
-            >
-              <motion.div
-                animate={{
-                  y: [0, -8, 0],
-                  rotate: [0, 2, -2, 0],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <TreePine
-                  className="w-7 h-7 text-emerald-500/50"
-                  strokeWidth={1.5}
-                />
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              className="relative"
-            >
-              {/* Glowing Ring */}
-              <motion.div
-                className="absolute inset-0 rounded-full bg-linear-to-r from-sky-400 via-emerald-400 to-amber-400 blur-xl opacity-40"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.4, 0.6, 0.4],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-              {/* Pulse Ring */}
-              <motion.div
-                className="absolute inset-0 rounded-full border-2 border-emerald-300/60"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.6, 0.3, 0.6],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-              {/* Image */}
-              <div className="relative rounded-full p-0.5 bg-linear-to-r from-sky-200 via-emerald-200 to-amber-200">
-                <div className="rounded-full bg-white p-1">
-                  <Image
-                    src="/logo.png"
-                    width={200}
-                    height={200}
-                    alt="Ihda Anwari - Frontend Engineer"
-                    priority
-                    sizes="200px"
-                    className="rounded-full"
-                  />
-                </div>
-              </div>
-            </motion.div>
+            <div className="flex items-center gap-2 text-sky-600">
+              <FolderGit2 className="w-4 h-4 lg:w-5 lg:h-5" />
+              <span className="text-xl lg:text-3xl font-bold">
+                <AnimatedCounter value={10} suffix="+" />
+              </span>
+            </div>
+            <span className="text-xs lg:text-sm text-gray-600 font-medium">
+              Projects Delivered
+            </span>
           </motion.div>
-        </div>
+
+          <motion.div
+            whileHover={{ scale: 1.05, y: -3 }}
+            className="flex flex-col items-center gap-1 px-4 lg:px-6 py-3 lg:py-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-amber-100 shadow-lg shadow-amber-100/50"
+          >
+            <div className="flex items-center gap-2 text-amber-600">
+              <Zap className="w-4 h-4 lg:w-5 lg:h-5" />
+              <span className="text-xl lg:text-3xl font-bold">
+                <AnimatedCounter value={100} suffix="%" />
+              </span>
+            </div>
+            <span className="text-xs lg:text-sm text-gray-600 font-medium">
+              On-time Delivery
+            </span>
+          </motion.div>
+        </motion.div>
+
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="flex flex-col sm:flex-row gap-3 lg:gap-4 w-full max-w-md px-4"
+        >
+          {/* Primary CTA */}
+          <motion.div
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+            className="flex-1"
+          >
+            <Link
+              href="mailto:ihdaanwari@gmail.com"
+              className="flex items-center justify-center gap-2 w-full px-6 py-3.5 lg:py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-full font-semibold shadow-lg shadow-emerald-600/30 hover:shadow-xl hover:shadow-emerald-600/40 transition-all duration-300"
+            >
+              <Mail className="w-4 h-4" />
+              <span>Let&apos;s Work Together</span>
+            </Link>
+          </motion.div>
+
+          {/* Secondary CTA */}
+          <motion.div
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+            className="flex-1"
+          >
+            <Link
+              href="#work-experiences"
+              className="flex items-center justify-center gap-2 w-full px-6 py-3.5 lg:py-4 bg-white/80 backdrop-blur-sm border-2 border-emerald-200 text-emerald-700 rounded-full font-semibold hover:border-emerald-400 hover:bg-emerald-50/50 transition-all duration-300"
+            >
+              <span>View My Work</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
+        </motion.div>
+
+        {/* Location & Role Badges */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.9 }}
+          className="flex gap-2 text-xs items-center justify-center flex-wrap"
+        >
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-gray-50/80 border border-gray-200/50 shadow-sm backdrop-blur-sm"
+          >
+            <MapPinIcon className="size-3.5 text-gray-500" />
+            <span className="font-medium text-gray-600">
+              Bandung, Indonesia
+            </span>
+          </motion.div>
+        </motion.div>
 
         {/* Skills Marquee */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.8 }}
-          className="w-[90%] overflow-hidden"
+          transition={{ duration: 0.7, delay: 1 }}
+          className="w-full max-w-4xl overflow-hidden"
         >
           <Marquee
             direction="left"
@@ -307,15 +291,13 @@ export default function HeroSection() {
             {SkillList.map((item, idx) => (
               <motion.div
                 key={idx}
-                whileHover={{ scale: 1.1, y: -5 }}
-                className="px-5 py-3 rounded-full bg-white/80 backdrop-blur-sm text-lg gap-2 flex items-center shadow-sm border border-emerald-100/60 hover:border-emerald-300/80 hover:shadow-md transition-all duration-300 cursor-pointer"
+                whileHover={{ scale: 1.1, y: -3 }}
+                className="px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm text-sm gap-2 flex items-center shadow-sm border border-gray-100/60 hover:border-emerald-200/80 hover:shadow-md transition-all duration-300 cursor-pointer"
               >
                 <span className={cn(item.color || "text-gray-600")}>
                   <item.icon />
                 </span>
-                <span className="font-semibold text-neutral-600">
-                  {item.title}
-                </span>
+                <span className="font-medium text-gray-600">{item.title}</span>
               </motion.div>
             ))}
           </Marquee>
@@ -325,7 +307,7 @@ export default function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1 }}
+          transition={{ duration: 0.7, delay: 1.1 }}
         >
           <SocialSection />
         </motion.div>
